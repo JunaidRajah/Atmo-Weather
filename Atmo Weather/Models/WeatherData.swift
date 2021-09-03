@@ -12,6 +12,7 @@ struct WeatherData: Codable {
     let lon: Double
     let current: Current
     let minutely: [Minutely]?
+    let hourly: [Hourly]
     let daily: [Daily]
 }
 
