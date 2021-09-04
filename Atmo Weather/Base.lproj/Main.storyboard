@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F19-II-kaa">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -8,14 +8,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Page View Controller-->
+        <scene sceneID="6vm-WO-eKf">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="F19-II-kaa" customClass="PageViewController" customModule="Atmo_Weather" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="blq-D0-ooT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-905" y="-604"/>
+        </scene>
         <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Atmo_Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="weather" wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Atmo_Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clearDay" translatesAutoresizingMaskIntoConstraints="NO" id="j1f-VI-hkQ">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQT-J1-Qnw">
                                 <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <subviews>
@@ -63,7 +74,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="260" id="0Mp-tM-I9C"/>
                                                     <constraint firstItem="I1l-Qs-XBa" firstAttribute="leading" secondItem="6LW-Oy-kR6" secondAttribute="trailing" constant="8" symbolic="YES" id="8vJ-Nv-eNc"/>
@@ -1045,7 +1055,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="Wvc-MZ-NMH" firstAttribute="leading" secondItem="hfd-AC-aU6" secondAttribute="leading" constant="8" id="0Or-fM-HXt"/>
                                                             <constraint firstItem="Wvc-MZ-NMH" firstAttribute="top" secondItem="hfd-AC-aU6" secondAttribute="top" constant="8" id="0Wr-ni-fMV"/>
@@ -1092,7 +1101,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="fxe-F5-4PP" firstAttribute="leading" secondItem="Bw9-6V-yUg" secondAttribute="leading" id="0B3-24-4FI"/>
                                                             <constraint firstItem="DQ4-gd-nij" firstAttribute="centerY" secondItem="Lg9-TN-yI5" secondAttribute="centerY" id="0yd-lA-QUp"/>
@@ -1139,7 +1147,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="T6U-pz-QMY" firstAttribute="centerY" secondItem="BeP-zb-aIN" secondAttribute="centerY" id="6R6-ao-brj"/>
                                                             <constraint firstItem="hyu-FM-jJQ" firstAttribute="width" secondItem="BeP-zb-aIN" secondAttribute="width" multiplier="0.102564" id="8Di-NZ-dVN"/>
@@ -1186,7 +1193,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="MPl-xD-shO" firstAttribute="trailing" secondItem="mRL-C2-qBQ" secondAttribute="trailing" id="AEQ-3T-xgr"/>
                                                             <constraint firstItem="DnF-Vn-2SV" firstAttribute="width" secondItem="wz8-Ch-zPg" secondAttribute="width" multiplier="0.102564" id="CW6-4p-VIb"/>
@@ -1233,7 +1239,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="70" id="2lN-Gz-yhK"/>
                                                             <constraint firstItem="L5D-QB-5Iq" firstAttribute="leading" secondItem="96s-Xz-sd4" secondAttribute="trailing" constant="82.666666666666671" id="80f-hX-TNW"/>
@@ -1280,7 +1285,6 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="wsR-DW-HKN" firstAttribute="leading" secondItem="Ka9-3X-bZq" secondAttribute="leading" constant="8" id="5eh-qU-OuK"/>
                                                             <constraint firstItem="zP9-lU-GKT" firstAttribute="leading" secondItem="wsR-DW-HKN" secondAttribute="trailing" constant="82.666666666666671" id="64B-79-jV2"/>
@@ -1447,22 +1451,132 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dQT-J1-Qnw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="02f-6t-O8e"/>
+                            <constraint firstItem="j1f-VI-hkQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2Y7-Aw-SlF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dQT-J1-Qnw" secondAttribute="bottom" id="P5V-F3-J8w"/>
+                            <constraint firstAttribute="bottom" secondItem="j1f-VI-hkQ" secondAttribute="bottom" id="RQw-jL-owO"/>
+                            <constraint firstItem="j1f-VI-hkQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="SiU-7r-rdw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dQT-J1-Qnw" secondAttribute="trailing" id="TFJ-6G-Bch"/>
                             <constraint firstItem="0TC-KT-vyy" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.424786" id="Y8E-qW-IXm"/>
                             <constraint firstItem="dQT-J1-Qnw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pV6-VX-JOf"/>
+                            <constraint firstItem="j1f-VI-hkQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yQK-Ze-4ZM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentConditionLabel" destination="rDE-Pc-qON" id="WLu-wJ-Zkd"/>
+                        <outlet property="currentMinMaxLabel" destination="r0v-9F-ExV" id="QyG-3I-PZy"/>
+                        <outlet property="currentTempLabel" destination="6LW-Oy-kR6" id="b6j-Ja-617"/>
+                        <outlet property="daily1ConditionImage" destination="pTk-AV-QtO" id="Sla-Ur-BVc"/>
+                        <outlet property="daily1DateLabel" destination="wSc-E4-me5" id="nbh-vd-woC"/>
+                        <outlet property="daily1MinMaxLabel" destination="6uw-G8-j87" id="wBg-MX-9gv"/>
+                        <outlet property="daily2ConditionImage" destination="Sy3-QB-Clf" id="nW5-qU-uuS"/>
+                        <outlet property="daily2DateLabel" destination="fxe-F5-4PP" id="mD1-ML-Ma3"/>
+                        <outlet property="daily2DayLabel" destination="Bw9-6V-yUg" id="u9t-7d-qXe"/>
+                        <outlet property="daily2MinMaxLabel" destination="DQ4-gd-nij" id="NJ2-r3-1Fz"/>
+                        <outlet property="daily3ConditionImage" destination="hyu-FM-jJQ" id="SKU-Aj-Y3r"/>
+                        <outlet property="daily3DateLabel" destination="T0I-rp-EBO" id="wiP-wS-bDA"/>
+                        <outlet property="daily3DayLabel" destination="8pa-Z8-ed7" id="RQn-fh-thH"/>
+                        <outlet property="daily3MinMaxLabel" destination="T6U-pz-QMY" id="QKD-Xl-w6g"/>
+                        <outlet property="daily4ConditionImage" destination="DnF-Vn-2SV" id="NXS-wp-I2V"/>
+                        <outlet property="daily4DateLabel" destination="MPl-xD-shO" id="5Wo-U6-3ut"/>
+                        <outlet property="daily4DayLabel" destination="mRL-C2-qBQ" id="4Kx-j2-qLd"/>
+                        <outlet property="daily4MinMaxLabel" destination="Oex-ye-ukz" id="GXM-yj-R5j"/>
+                        <outlet property="daily5ConditionImage" destination="L5D-QB-5Iq" id="lQm-2B-7Un"/>
+                        <outlet property="daily5DateLabel" destination="eh1-vs-aFl" id="xCj-BF-pFJ"/>
+                        <outlet property="daily5DayLabel" destination="96s-Xz-sd4" id="I7A-Aq-7x9"/>
+                        <outlet property="daily5MinMaxLabel" destination="ufW-xd-vz1" id="nBg-T1-Iyg"/>
+                        <outlet property="daily6ConditionImage" destination="zP9-lU-GKT" id="Nzf-6L-Uxd"/>
+                        <outlet property="daily6DateLabel" destination="96H-0X-Lqx" id="IDB-XF-gSv"/>
+                        <outlet property="daily6DayLabel" destination="wsR-DW-HKN" id="fep-Hr-Kvz"/>
+                        <outlet property="daily6MinMaxLabel" destination="eeh-cZ-fMf" id="QsK-1r-Fkh"/>
+                        <outlet property="feelsLikeLabel" destination="CZs-aR-kd3" id="BT8-vq-erW"/>
+                        <outlet property="hour10ConditionImage" destination="KVJ-Mu-t5h" id="bEm-wM-mOc"/>
+                        <outlet property="hour10TempLabel" destination="XNv-u5-L5q" id="lcJ-An-Dp0"/>
+                        <outlet property="hour10TimeLabel" destination="KWP-oj-7za" id="SRk-yd-zxA"/>
+                        <outlet property="hour11ConditionImage" destination="vgB-wx-pPn" id="JiQ-Gh-Dvl"/>
+                        <outlet property="hour11TempLabel" destination="JFK-3a-oMb" id="7jq-a8-2Av"/>
+                        <outlet property="hour11TimeLabel" destination="nH7-Ze-6kE" id="Y8j-rb-fzP"/>
+                        <outlet property="hour12ConditionImage" destination="uRD-RT-hhA" id="kb7-Pn-GtR"/>
+                        <outlet property="hour12TempLabel" destination="fVQ-hl-tpZ" id="hLU-iW-ZZX"/>
+                        <outlet property="hour12TimeLabel" destination="YUU-VY-f9c" id="rmA-wO-Wmz"/>
+                        <outlet property="hour13ConditionImage" destination="GqU-O4-h65" id="Edh-7S-XfO"/>
+                        <outlet property="hour13TempLabel" destination="7ON-f0-a9b" id="bJH-Ed-jip"/>
+                        <outlet property="hour13TimeLabel" destination="iXz-JC-Nuj" id="NtU-yU-8p8"/>
+                        <outlet property="hour14ConditionImage" destination="JSJ-jA-AIr" id="TqY-4N-vmt"/>
+                        <outlet property="hour14TempLabel" destination="ekL-0x-hef" id="vgP-mI-XjB"/>
+                        <outlet property="hour14TimeLabel" destination="dw6-9m-wbI" id="IcT-ON-SRl"/>
+                        <outlet property="hour15ConditionImage" destination="1g0-CQ-vp1" id="UBS-tu-uhC"/>
+                        <outlet property="hour15TempLabel" destination="F27-Th-3nP" id="RHP-tI-7JR"/>
+                        <outlet property="hour15TimeLabel" destination="cax-Mp-eP1" id="nJd-5l-5dr"/>
+                        <outlet property="hour16ConditionImage" destination="wQe-Qd-GoM" id="fwZ-jy-xEt"/>
+                        <outlet property="hour16TempLabel" destination="K9C-M3-x5f" id="zj7-zL-gXt"/>
+                        <outlet property="hour16TimeLabel" destination="fwS-Y7-cqF" id="i4N-qq-Koy"/>
+                        <outlet property="hour17ConditionImage" destination="UFp-2W-w2e" id="3ZO-3V-zaU"/>
+                        <outlet property="hour17TempLabel" destination="dmk-JW-wkH" id="9sn-Pc-kZA"/>
+                        <outlet property="hour17TimeLabel" destination="bAF-mf-MDt" id="MHP-uQ-fe0"/>
+                        <outlet property="hour18ConditionImage" destination="asA-EI-Yo7" id="ek4-Py-16r"/>
+                        <outlet property="hour18TempLabel" destination="WpK-Ba-Uea" id="orn-vt-aY5"/>
+                        <outlet property="hour18TimeLabel" destination="fFZ-KQ-dTL" id="1sq-Hn-BhD"/>
+                        <outlet property="hour19ConditionImage" destination="CRK-pg-MIx" id="7DP-xk-fmz"/>
+                        <outlet property="hour19TempLabel" destination="TJq-hZ-X0z" id="WZH-DW-acz"/>
+                        <outlet property="hour19TimeLabel" destination="hOO-G3-Tc3" id="btN-pa-f8g"/>
+                        <outlet property="hour1ConditionImage" destination="hkX-rX-hfg" id="z1f-si-aaU"/>
+                        <outlet property="hour1TempLabel" destination="r1c-RS-d4b" id="sJb-4A-e8Y"/>
+                        <outlet property="hour1TimeLabel" destination="ysQ-if-J2M" id="VtB-ku-wxu"/>
+                        <outlet property="hour20ConditionImage" destination="IXe-mM-wvN" id="sOC-Dr-4k8"/>
+                        <outlet property="hour20TempLabel" destination="ji8-OH-hDv" id="H7f-lO-0zp"/>
+                        <outlet property="hour20TimeLabel" destination="WLl-L6-kfR" id="a7m-2p-FIM"/>
+                        <outlet property="hour21ConditionImage" destination="86C-LD-Wmn" id="Ktw-25-YU6"/>
+                        <outlet property="hour21TempLabel" destination="wS8-2N-xf9" id="PqT-Ju-Jrl"/>
+                        <outlet property="hour21TimeLabel" destination="hNc-wW-kJ9" id="tav-29-vcb"/>
+                        <outlet property="hour22ConditionImage" destination="VjD-Nt-IIE" id="eYy-EI-8FJ"/>
+                        <outlet property="hour22TempLabel" destination="ZYA-dg-Th2" id="XDE-jA-KgK"/>
+                        <outlet property="hour22TimeLabel" destination="9UH-4x-RvV" id="rto-aG-3Ss"/>
+                        <outlet property="hour23ConditionImage" destination="0te-Gk-Yuy" id="aPx-60-l7e"/>
+                        <outlet property="hour23TempLabel" destination="gqW-S1-lIg" id="axE-f4-xGt"/>
+                        <outlet property="hour23TimeLabel" destination="p8v-Lf-d8b" id="hI6-aQ-iKr"/>
+                        <outlet property="hour24ConditionImage" destination="cay-Y6-Hzp" id="U1o-aw-urP"/>
+                        <outlet property="hour24TempLabel" destination="jML-Or-Y3Z" id="n2D-zp-oer"/>
+                        <outlet property="hour24TimeLabel" destination="i4s-Ra-dsx" id="yD3-Hq-HGW"/>
+                        <outlet property="hour2ConditionImage" destination="KFb-QV-lAr" id="EAr-cu-tOJ"/>
+                        <outlet property="hour2TempLabel" destination="bXD-8O-Vc3" id="1Cc-xP-Nbu"/>
+                        <outlet property="hour2TimeLabel" destination="J7U-NY-WRk" id="L4a-ii-2od"/>
+                        <outlet property="hour3ConditionImage" destination="egH-eL-k71" id="LCu-8b-WFv"/>
+                        <outlet property="hour3TempLabel" destination="G9w-sF-Lgn" id="QDZ-wS-jjL"/>
+                        <outlet property="hour3TimeLabel" destination="HNU-6k-W2C" id="3Bz-ZF-oWK"/>
+                        <outlet property="hour4ConditionImage" destination="ehz-rw-cLZ" id="nKU-J4-uvy"/>
+                        <outlet property="hour4TempLabel" destination="YoE-iL-qCk" id="KDa-Gf-YFk"/>
+                        <outlet property="hour4TimeLabel" destination="NRY-DX-Lh4" id="dAh-oI-Sm1"/>
+                        <outlet property="hour5ConditionImage" destination="q85-aQ-PpA" id="XP5-Za-quZ"/>
+                        <outlet property="hour5TempLabel" destination="WhU-cL-IW2" id="lqa-px-0W8"/>
+                        <outlet property="hour5TimeLabel" destination="JeJ-l5-xfI" id="VSd-Qs-YEa"/>
+                        <outlet property="hour6ConditionImage" destination="zAs-GA-ovZ" id="kjQ-Si-Y8l"/>
+                        <outlet property="hour6TempLabel" destination="jOU-eb-agA" id="4g1-Rd-3mq"/>
+                        <outlet property="hour6TimeLabel" destination="UdW-Q6-mIl" id="SWI-vL-dts"/>
+                        <outlet property="hour7ConditionImage" destination="r5g-3S-1fb" id="qEv-55-SI0"/>
+                        <outlet property="hour7TempLabel" destination="kXK-eg-g74" id="tJc-96-JfI"/>
+                        <outlet property="hour7TimeLabel" destination="8ab-U6-RrU" id="rca-2j-veG"/>
+                        <outlet property="hour8ConditionImage" destination="Zk8-bq-dp8" id="4mw-VB-yLR"/>
+                        <outlet property="hour8TempLabel" destination="T1x-yB-mrM" id="nyr-8p-ZXd"/>
+                        <outlet property="hour8TimeLabel" destination="cIU-aT-hEb" id="Pga-Ud-asz"/>
+                        <outlet property="hour9ConditionImage" destination="NnY-5i-nrr" id="W60-yY-U6v"/>
+                        <outlet property="hour9TempLabel" destination="d2l-gs-k9p" id="MVN-Gj-ogV"/>
+                        <outlet property="hour9TimeLabel" destination="k3j-hG-W9I" id="A1T-gk-Swm"/>
+                        <outlet property="locationLabel" destination="6fJ-rQ-8Wi" id="9K0-cP-Y4W"/>
+                        <outlet property="uvLabel" destination="q6d-mY-ufx" id="Yb8-2S-Np0"/>
+                        <outlet property="weatherBack" destination="j1f-VI-hkQ" id="Ld4-WD-tlK"/>
+                        <outlet property="windDirectionLabel" destination="Lt0-Cj-RIv" id="K63-99-opy"/>
+                        <outlet property="windSpeedLabel" destination="9p4-Ld-ulE" id="C1O-8M-xcs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-75" y="-427"/>
+            <point key="canvasLocation" x="-149.23076923076923" y="-603.55450236966817"/>
         </scene>
     </scenes>
     <resources>
+        <image name="clearDay" width="862" height="1552"/>
         <image name="cloud.rain.fill" catalog="system" width="128" height="125"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="sun.max.fill" catalog="system" width="128" height="124"/>

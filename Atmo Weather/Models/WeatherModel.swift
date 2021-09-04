@@ -8,6 +8,7 @@
 import Foundation
 
 struct WeatherModel {
+    let index: Int = 0
     let current: CurrentModel
     let daily: [DailyModel]
     let hourly: [HourlyModel]
@@ -30,25 +31,25 @@ struct CurrentModel {
     let weather: [WeatherType]
     
     var tempratureString: String {
-        return String(Int(temp))
+        return "\(Int(temp))"
     }
     
     var feelsLikeString: String {
-        return String(Int(temp))
+        return String(Int(feelsLike))
     }
     
     var uvString: String {
-        switch uvi {
+        switch Int(uvi) {
             case 0...2:
-                return "\(uvi) Low"
+                return "\(Int(uvi)) Low"
             case 3...5:
-                return "\(uvi) Moderate"
+                return "\(Int(uvi)) Moderate"
             case 6...7:
-                return "\(uvi) High"
+                return "\(Int(uvi)) High"
             case 8...10:
-                return "\(uvi) Very High"
+                return "\(Int(uvi)) Very High"
             default:
-                return "\(uvi) Extreme"
+                return "\(Int(uvi)) Extreme"
         }
     }
     
@@ -80,6 +81,24 @@ struct CurrentModel {
                 return "Error"
         }
     }
+    
+    var currentBack: String {
+        switch weather[0].icon {
+        case "01d":
+            return "clearDay"
+        case "01n":
+            return "clearNight"
+        case "02d", "03d", "04d":
+            return "cloudDay"
+        case "02n", "03n", "04n":
+            return "cloudNight"
+        case "09d", "09n", "10d", "10n", "11d",
+             "11n", "13d", "13n", "50d", "50n":
+            return "gloom"
+        default:
+            return "clearDay"
+        }
+    }
 }
 
 struct HourlyModel {
@@ -87,8 +106,18 @@ struct HourlyModel {
     let temp: Double
     let weather: [WeatherType]
     
-    var TempratureString: String {
-        return String(Int(temp))
+    var tempratureString: String {
+        return "\(Int(temp))°"
+    }
+    
+    var timeString: String {
+        let date = Date(timeIntervalSince1970: Double(dt))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
     }
 }
 
@@ -96,6 +125,26 @@ struct DailyModel {
     let dt: Int
     let temp: TempModel
     let weather: [WeatherType]
+    
+    var dayString: String {
+        let date = Date(timeIntervalSince1970: Double(dt))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
+    
+    var dateString: String {
+        let date = Date(timeIntervalSince1970: Double(dt))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MM"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
 }
 
 struct TempModel {
@@ -104,15 +153,15 @@ struct TempModel {
     let max: Double
     
     var dayTempratureString: String {
-        return String(Int(day))
+        return "\(Int(day))°"
     }
     
     var minTempratureString: String {
-        return String(Int(min))
+        return "\(Int(min))°"
     }
     
     var maxTempratureString: String {
-        return String(Int(max))
+        return "\(Int(max))°"
     }
 }
 
