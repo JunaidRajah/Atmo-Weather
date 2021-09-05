@@ -8,10 +8,23 @@
 import Foundation
 
 struct WeatherModel {
-    let index: Int = 0
+    var name = ""
+    let index: Int
+    let lat: Double
+    let lon: Double
     let current: CurrentModel
     let daily: [DailyModel]
     let hourly: [HourlyModel]
+    
+    var currentRainString: String {
+        var total = 0.00
+        for day in daily {
+            total += day.pop
+        }
+        total = total / Double(daily.count)
+        total = total * 100
+        return "\(Int(total))%"
+    }
 }
 
 struct CurrentModel {
@@ -28,7 +41,12 @@ struct CurrentModel {
     let windDeg: Int
     let windGust: Double?
     let rain: RainModel?
+    let snow: SnowModel?
     let weather: [WeatherType]
+    
+    var snowString: String {
+        return "\(Int(snow?.the1h ?? 0))%"
+    }
     
     var tempratureString: String {
         return "\(Int(temp))"
@@ -104,6 +122,7 @@ struct CurrentModel {
 struct HourlyModel {
     let dt: Int
     let temp: Double
+    let pop: Double
     let weather: [WeatherType]
     
     var tempratureString: String {
@@ -125,6 +144,7 @@ struct DailyModel {
     let dt: Int
     let temp: TempModel
     let weather: [WeatherType]
+    let pop: Double
     
     var dayString: String {
         let date = Date(timeIntervalSince1970: Double(dt))
@@ -140,10 +160,14 @@ struct DailyModel {
         let date = Date(timeIntervalSince1970: Double(dt))
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MM"
+        dateFormatter.dateFormat = "dd LLL"
         let strDate = dateFormatter.string(from: date)
         
         return strDate
+    }
+    
+    var rainString: String {
+        return "\(Int(pop * 100))%"
     }
 }
 
@@ -166,6 +190,13 @@ struct TempModel {
 }
 
 struct RainModel {
+    let the1h: Double?
+    enum CodingKeys: String, CodingKey {
+           case the1h = "1h"
+    }
+}
+
+struct SnowModel {
     let the1h: Double?
     enum CodingKeys: String, CodingKey {
            case the1h = "1h"

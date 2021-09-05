@@ -11,23 +11,29 @@ import CoreLocation
 class PageViewController: UIPageViewController {
     
     private let defaults = UserDefaults.standard
-    
+    let locales = LocalLocales.locales
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
     
-    private var cityData = [WeatherModel]()
+    private var cityLat = [Double]()
+    private var cityLon = [Double]()
     private var currentIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestLocation()
         
         locationManager.delegate = self
         weatherManager.delegate = self
-        
+//        for city in locales.cities {
+//            print(city.index)
+//        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -39,19 +45,37 @@ class PageViewController: UIPageViewController {
         super.viewDidLayoutSubviews()
     }
     
+    private func addCities() {
+        if let lat = defaults.array(forKey: "cityLat") as? [Double] {
+            cityLat = lat
+        }
+        
+        if let lon = defaults.array(forKey: "cityLon") as? [Double] {
+            cityLon = lon
+        }
+        
+        var count = 1
+        for i in 0..<cityLat.count {
+            print(count)
+            print(i)
+            weatherManager.fetchWeather(latitude: cityLat[i], longitude: cityLon[i], index: count)
+            count += 1
+        }
+    }
+    
     private func setupPageController() {
-        
-        let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
-        appearance.pageIndicatorTintColor = UIColor.gray
-        appearance.currentPageIndicatorTintColor = UIColor.white
-        
-        self.dataSource = self
-        self.delegate = self
-        self.view.backgroundColor = .clear
-        
-        let initialVC = WeatherViewController.createWeatherView(city: cityData[0])
-        self.setViewControllers([initialVC], direction: .forward, animated: true, completion: nil)
-        self.didMove(toParent: self)
+        if self.locales.cities.count == ((self.defaults.array(forKey: "cityLat") as? [Double])?.count ?? 0) + 1 {
+            let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
+            appearance.pageIndicatorTintColor = UIColor.gray
+            appearance.currentPageIndicatorTintColor = UIColor.white
+            
+            self.dataSource = self
+            self.delegate = self
+            self.view.backgroundColor = .clear
+            let initialVC = WeatherViewController.createWeatherView(city: locales.cities[0])
+            self.setViewControllers([initialVC], direction: .forward, animated: true, completion: nil)
+            self.didMove(toParent: self)
+        }
     }
 }
 
@@ -71,7 +95,7 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         
         index -= 1
         
-        let vc: WeatherViewController = WeatherViewController.createWeatherView(city: cityData[index])
+        let vc: WeatherViewController = WeatherViewController.createWeatherView(city: locales.cities[index])
         
         return vc
     }
@@ -84,19 +108,19 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         
         var index = currentVC.city.index
         
-        if index >= self.cityData.count - 1 {
+        if index >= self.locales.cities.count - 1 {
             return nil
         }
         
         index += 1
 
-        let vc: WeatherViewController = WeatherViewController.createWeatherView(city: cityData[index])
+        let vc: WeatherViewController = WeatherViewController.createWeatherView(city: locales.cities[index])
         
         return vc
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return self.cityData.count
+        return self.locales.cities.count
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
@@ -109,8 +133,37 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
 extension PageViewController: WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async {
-            self.cityData.append(weather)
-            self.setupPageController()
+            if weather.index == 0 && self.locales.cities.isEmpty {
+                self.locales.cities.append(weather)
+                print(" First City Appended at index: \(weather.index)")
+                
+            } else if weather.index > 0 && self.locales.cities.count == weather.index {
+                self.locales.cities.append(weather)
+                print("Appended at index: \(weather.index)")
+                
+            } else if self.locales.cities.count > 0 && weather.index < self.locales.cities.count {
+                self.locales.cities[weather.index] = weather
+                print("Added at index: \(weather.index)")
+                
+            } else {
+                let diff = (weather.index + 1) - self.locales.cities.count
+                
+                for _ in 0...diff - 1 {
+                    self.locales.cities.append(weather)
+                }
+                print("Prematurely Added at index: \(weather.index)")
+            }
+            
+            if weather.index == 0 {
+                self.addCities()
+            }
+            
+            print("local Cities: \(self.locales.cities.count)")
+            print("stored Cities: \(((self.defaults.array(forKey: "cityLat") as? [Double])?.count ?? 0) + 1)")
+            
+            if self.locales.cities.count == ((self.defaults.array(forKey: "cityLat") as? [Double])?.count ?? 0) + 1 {
+                self.setupPageController()
+            }
         }
     }
     
@@ -127,7 +180,7 @@ extension PageViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
-            weatherManager.fetchWeather(latitude: lat, longitude: lon)
+            weatherManager.fetchWeather(latitude: lat, longitude: lon, index: 0)
         }
     }
     

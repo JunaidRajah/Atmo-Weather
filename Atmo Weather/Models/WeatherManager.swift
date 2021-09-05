@@ -14,17 +14,18 @@ protocol WeatherManagerDelegate {
 }
 
 struct WeatherManager {
-    let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&appid=d98d345fe32e5bad306af56582e9f887&units=metric"
-    
+    let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&appid=41f78456f76079e3046aded1054b4183&units=metric"
     var delegate: WeatherManagerDelegate?
+    var name = ""
     
-    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
+    lazy var geocoder = CLGeocoder()
+    
+    mutating func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees, index: Int){
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
-        print(urlString)
-        performRequest(with: urlString)
+        performRequest(with: urlString, index: index)
     }
     
-    func performRequest(with urlString: String) {
+    func performRequest(with urlString: String, index: Int) {
         
         if let url = URL(string: urlString) {
             
@@ -37,7 +38,7 @@ struct WeatherManager {
                 }
                 
                 if let safeData = data {
-                    if let weather = self.parseJSON(safeData) {
+                    if let weather = self.parseJSON(safeData, index: index) {
                         self.delegate?.didUpdateWeather(self, weather: weather)
                     }
                 }
@@ -46,7 +47,7 @@ struct WeatherManager {
         }
     }
 
-    func parseJSON(_ weatherData: Data) -> WeatherModel? {
+    func parseJSON(_ weatherData: Data, index: Int) -> WeatherModel? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
@@ -66,6 +67,7 @@ struct WeatherManager {
                                        windDeg: decodedData.current.windDeg,
                                        windGust: decodedData.current.windGust ?? 0,
                                        rain: RainModel(the1h: decodedData.current.rain?.the1h ?? 0),
+                                       snow: SnowModel(the1h: decodedData.current.snow?.the1h ?? 0),
                                        weather: [WeatherType(id: decodedData.current.weather[0].id,
                                                             main: decodedData.current.weather[0].main,
                                                             description: decodedData.current.weather[0].description,
@@ -80,7 +82,8 @@ struct WeatherManager {
                                         weather: [WeatherType(id: day.weather[0].id,
                                                               main: day.weather[0].main,
                                                               description: day.weather[0].description,
-                                                              icon: day.weather[0].icon)])
+                                                              icon: day.weather[0].icon)],
+                                        pop: day.pop)
                 daily.append(newDay)
             }
             
@@ -88,6 +91,7 @@ struct WeatherManager {
             for hour in decodedData.hourly {
                 let newHour = HourlyModel(dt: hour.dt,
                                           temp: hour.temp,
+                                          pop: hour.pop,
                                           weather: [WeatherType(id: hour.weather[0].id,
                                                                 main: hour.weather[0].main,
                                                                 description: hour.weather[0].description,
@@ -95,7 +99,7 @@ struct WeatherManager {
                 hourly.append(newHour)
             }
             
-            let weather = WeatherModel(current: current, daily: daily, hourly: hourly)
+            let weather = WeatherModel(index: index,lat: decodedData.lat, lon: decodedData.lon, current: current, daily: daily, hourly: hourly)
             return weather
             
         } catch {
@@ -103,4 +107,6 @@ struct WeatherManager {
             return nil
         }
     }
+    
+    
 }

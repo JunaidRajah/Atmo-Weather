@@ -11,7 +11,6 @@ struct WeatherData: Codable {
     let lat: Double
     let lon: Double
     let current: Current
-    let minutely: [Minutely]?
     let hourly: [Hourly]
     let daily: [Daily]
 }
@@ -31,6 +30,7 @@ struct Current: Codable {
     let windDeg: Int
     let windGust: Double?
     let rain: Rain?
+    let snow: Snow?
     let weather: [Weather]
 }
 
@@ -96,9 +96,11 @@ struct Rain: Codable {
     }
 }
 
-struct Minutely: Codable {
-    let dt: Int
-    let precipitation: Int
+struct Snow: Codable {
+    let the1h: Double?
+    enum CodingKeys: String, CodingKey {
+           case the1h = "1h"
+    }
 }
 
 struct Weather: Codable {

@@ -11,6 +11,8 @@ import CoreLocation
 class WeatherViewController: UIViewController {
     
     var city: WeatherModel!
+    lazy var geocoder = CLGeocoder()
+    let locales = LocalLocales.locales
     
     @IBOutlet weak var weatherBack: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
@@ -120,10 +122,33 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var daily5ConditionImage: UIImageView!
     @IBOutlet weak var daily6ConditionImage: UIImageView!
     
+    
+    @IBOutlet weak var currentRainIcon: UIImageView!
+    @IBOutlet weak var daily1RainIcon: UIImageView!
+    @IBOutlet weak var daily2RainIcon: UIImageView!
+    @IBOutlet weak var daily3RainIcon: UIImageView!
+    @IBOutlet weak var daily4RainIcon: UIImageView!
+    @IBOutlet weak var daily5RainIcon: UIImageView!
+    @IBOutlet weak var daily6RainIcon: UIImageView!
+    
+    
+    @IBOutlet weak var currentRainLabel: UILabel!
+    @IBOutlet weak var daily1RainLabel: UILabel!
+    @IBOutlet weak var daily2RainLabel: UILabel!
+    @IBOutlet weak var daily3RainLabel: UILabel!
+    @IBOutlet weak var daily4RainLabel: UILabel!
+    @IBOutlet weak var daily5RainLabel: UILabel!
+    @IBOutlet weak var daily6RainLabel: UILabel!
+    
+    @IBOutlet weak var snowIcon: UIImageView!
+    @IBOutlet weak var snowLabel: UILabel!
+    
+    
     @IBOutlet weak var feelsLikeLabel: UILabel!
     @IBOutlet weak var uvLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
+    
     
     static func createWeatherView(city: WeatherModel) -> WeatherViewController {
         let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "weather") as! WeatherViewController
@@ -138,10 +163,19 @@ class WeatherViewController: UIViewController {
     }
     
     private func updateUI() {
+        
+        let location = CLLocation(latitude: city.lat, longitude: city.lon)
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            // Process Response
+            let cityName = self.processResponse(withPlacemarks: placemarks, error: error)
+            self.locationLabel.text = cityName
+            self.locales.cities[self.city.index].name = cityName
+            print(self.locales.cities[self.city.index].name)
+        }
+        
         var dailyHigh = -100.00
         var dailyLow = 100.00
         weatherBack.image = UIImage(named: city.current.currentBack)
-        locationLabel.text = "Current"
         currentTempLabel.text = city.current.tempratureString
         
         for i in 1...24 {
@@ -257,11 +291,76 @@ class WeatherViewController: UIViewController {
         daily5ConditionImage.image = UIImage(named: city.daily[4].weather[0].icon)
         daily6ConditionImage.image = UIImage(named: city.daily[5].weather[0].icon)
         
+        if city.currentRainString != "0%" {
+            currentRainIcon.isHidden = false
+            currentRainLabel.isHidden = false
+            currentRainLabel.text = city.currentRainString
+        }
+        
+        if city.daily[0].pop != 0 {
+            daily1RainIcon.isHidden = false
+            daily1RainLabel.isHidden = false
+            daily1RainLabel.text = city.daily[0].rainString
+        }
+        
+        if city.daily[1].pop != 0 {
+            daily2RainIcon.isHidden = false
+            daily2RainLabel.isHidden = false
+            daily2RainLabel.text = city.daily[1].rainString
+        }
+        
+        if city.daily[2].pop != 0 {
+            daily3RainIcon.isHidden = false
+            daily3RainLabel.isHidden = false
+            daily3RainLabel.text = city.daily[2].rainString
+        }
+    
+        if city.daily[3].pop != 0 {
+            daily4RainIcon.isHidden = false
+            daily4RainLabel.isHidden = false
+            daily4RainLabel.text = city.daily[3].rainString
+        }
+        
+        if city.daily[4].pop != 0 {
+            daily5RainIcon.isHidden = false
+            daily5RainLabel.isHidden = false
+            daily5RainLabel.text = city.daily[4].rainString
+        }
+        
+        if city.daily[5].pop != 0 {
+            daily6RainIcon.isHidden = false
+            daily6RainLabel.isHidden = false
+            daily6RainLabel.text = city.daily[5].rainString
+        }
+        
+        if city.current.snowString != "0%" {
+            snowIcon.isHidden = false
+            snowLabel.isHidden = false
+            snowLabel.text = city.current.snowString
+        }
+        
         feelsLikeLabel.text = "\(city.current.feelsLikeString)°"
         uvLabel.text = city.current.uvString
         
         windDirectionLabel.text = city.current.windDirectionString
         windSpeedLabel.text = city.current.windSpeedString
+        
+        
+    }
+    
+    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
+
+        if let error = error {
+            print("Unable to Reverse Geocode Location (\(error))")
+
+        } else {
+            if let placemarks = placemarks, let placemark = placemarks.first {
+                return placemark.locality ?? "The Middle of Nowhere"
+            } else {
+                return "Unknown"
+            }
+        }
+        return "Unknown"
     }
 
 }
