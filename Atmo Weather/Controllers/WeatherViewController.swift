@@ -348,6 +348,9 @@ class WeatherViewController: UIViewController {
         humidityLabel.text = "\(city.current.humidity)%"
         humidityBar.progress = Float(city.current.humidity) / 100
         
+        feelsLikeLabel.text = city.current.feelsLikeString
+        uvLabel.text = city.current.uvString
+        
         windDirectionLabel.text = city.current.windDirectionString
         windSpeedLabel.text = city.current.windSpeedString
     }
