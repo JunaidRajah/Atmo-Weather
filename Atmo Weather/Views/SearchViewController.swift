@@ -31,6 +31,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
         searchBar?.delegate = self
         searchResultsTable?.delegate = self
         searchResultsTable?.dataSource = self
+        searchBar.becomeFirstResponder()
     }
     
     // This method declares that whenever the text in the searchbar is change to also update
@@ -132,6 +133,7 @@ extension SearchViewController: UITableViewDelegate {
             
             self.defaults.set(self.cityLon, forKey: "cityLon")
         }
+        view.endEditing(true)
         performSegue(withIdentifier: "returnFromCity", sender: self)
     }
 }

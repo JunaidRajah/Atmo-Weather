@@ -21,6 +21,19 @@ class PageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        let image = UIImageView()
+        image.image = UIImage(named: "Atmo Launch.png")
+        image.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        customView.addSubview(image)
+        let stored = Double((defaults.array(forKey: "cityLat") as? [Double])?.count ?? 2)
+        DispatchQueue.main.asyncAfter(deadline: .now() + stored){
+            image.alpha = 0
+            self.view.sendSubviewToBack(customView)
+            }
+        self.view.addSubview(customView)
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.requestLocation()
@@ -185,7 +198,26 @@ extension PageViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        print("error::: \(error)")
+            locationManager.stopUpdatingLocation()
+        let alert = UIAlertController(title: "Settings", message: "Allow location from settings", preferredStyle: UIAlertController.Style.alert)
+        self.present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Location not granted", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString)! as URL, options: [:])  { (success: Bool) in
+                       print("sent to settings")
+                     }
+                case .cancel:
+                    print("cancel")
+                case .destructive:
+                    print("destructive")
+                @unknown default:
+                    UIApplication.shared.open(NSURL(string: UIApplication.openSettingsURLString)! as URL, options: [:])  { (success: Bool) in
+                       print("sent to settings")
+                     }
+                }
+            }))
     }
 }
 

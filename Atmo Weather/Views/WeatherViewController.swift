@@ -144,6 +144,8 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var snowLabel: UILabel!
     
     
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var humidityBar: UIProgressView!
     @IBOutlet weak var feelsLikeLabel: UILabel!
     @IBOutlet weak var uvLabel: UILabel!
     @IBOutlet weak var windDirectionLabel: UILabel!
@@ -339,8 +341,8 @@ class WeatherViewController: UIViewController {
             snowLabel.text = city.current.snowString
         }
         
-        feelsLikeLabel.text = "\(city.current.feelsLikeString)°"
-        uvLabel.text = city.current.uvString
+        humidityLabel.text = "\(city.current.humidity)%"
+        humidityBar.progress = Float(city.current.humidity) / 100
         
         windDirectionLabel.text = city.current.windDirectionString
         windSpeedLabel.text = city.current.windSpeedString
