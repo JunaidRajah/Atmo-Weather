@@ -176,7 +176,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ulx-sJ-zlI">
-                                                        <rect key="frame" x="52.333333333333314" y="122.33333333333334" width="38.333333333333329" height="21"/>
+                                                        <rect key="frame" x="52.333333333333329" y="122.33333333333334" width="38.333333333333329" height="21"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -1602,7 +1602,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feels like" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OLp-OY-TZW">
-                                                        <rect key="frame" x="199" y="124" width="58.333333333333314" height="16.333333333333329"/>
+                                                        <rect key="frame" x="199" y="123.99999999999999" width="58.333333333333314" height="16.333333333333329"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -1906,7 +1906,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ieq-DS-Vlo"/>
+        <segue reference="6ET-nw-FcZ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.left" catalog="system" width="96" height="128"/>

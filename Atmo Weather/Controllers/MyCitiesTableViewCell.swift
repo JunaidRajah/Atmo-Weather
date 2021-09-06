@@ -23,10 +23,11 @@ class MyCitiesTableViewCell: UITableViewCell {
     public func configure(lat: Double, lon: Double, cellBack: String, cityTemp: String ) {
         self.backgroundColor = .clear
         let location = CLLocation(latitude: lat, longitude: lon)
+        
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            // Process Response
             self.cityName.text = self.processResponse(withPlacemarks: placemarks, error: error)
         }
+        
         self.cellBack.image = UIImage(named: cellBack)
         self.cityTemp.text = "\(cityTemp)°"
     }
@@ -37,9 +38,9 @@ class MyCitiesTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+    
+    //MARK: - Reverse Geo
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
 
@@ -54,9 +55,5 @@ class MyCitiesTableViewCell: UITableViewCell {
             }
         }
         return "Unknown"
-    }
-    
-    @IBAction func cityDeleteButtonPressed(_ sender: UIButton) {
-        
     }
 }

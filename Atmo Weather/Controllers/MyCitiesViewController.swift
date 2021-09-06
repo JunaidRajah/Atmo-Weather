@@ -14,6 +14,7 @@ class MyCitiesViewController: UIViewController {
     let locales = LocalLocales.locales
     var name = "The Middle of Nowhere"
     lazy var geocoder = CLGeocoder()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +38,19 @@ class MyCitiesViewController: UIViewController {
         return "Unknown"
     }
 }
+
+//MARK: - UITableView DataSource functions
+
 extension MyCitiesViewController: UITableViewDataSource {
-    // This method declares the number of sections that we want in our table.
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    // This method declares how many rows are the in the table
-    // We want this to be the number of current search results that the
-    // Completer has generated for us
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locales.cities.count - 1
     }
     
-    // This method delcares the cells that are table is going to show at a particular index
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Get the specific searchResult at the particular index
         let cityCell = tableView.dequeueReusableCell(withIdentifier: MyCitiesTableViewCell.identifier, for: indexPath) as! MyCitiesTableViewCell
         
         cityCell.configure(lat: self.locales.cities[indexPath.row + 1].lat,
@@ -64,14 +62,25 @@ extension MyCitiesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 90
     }
 }
 
+//MARK: - UITableView Delegate functions
+
 extension MyCitiesViewController: UITableViewDelegate {
-    // This method declares the behavior of what is to happen when the row is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        var arrLat = self.defaults.array(forKey: "cityLat") as? [Double]
+        arrLat?.remove(at: indexPath.row)
+        defaults.set(arrLat, forKey: "cityLat")
+        
+        var arrLon = self.defaults.array(forKey: "cityLon") as? [Double]
+        arrLon?.remove(at: indexPath.row)
+        defaults.set(arrLon, forKey: "cityLon")
+        
+        locales.cities.remove(at: indexPath.row + 1)
+        performSegue(withIdentifier: "myCitiesToWeather", sender: self)
     }
 }

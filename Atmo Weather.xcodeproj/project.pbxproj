@@ -94,23 +94,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A1406FFA26E152050070B989 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				A140700626E3D60D0070B989 /* LocalLocales.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		A1406FFB26E152100070B989 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A16B52D226DB3C2200B34BEF /* WeatherViewController.swift */,
-				A1406FFE26E28D390070B989 /* PageViewController.swift */,
-				A140700426E38CFF0070B989 /* SearchViewController.swift */,
-				A18AC2CC26E5147D000C1794 /* MyCitiesViewController.swift */,
-				A18AC2CE26E514E6000C1794 /* MyCitiesTableViewCell.swift */,
 				A18AC2CF26E514E6000C1794 /* MyCitiesTableViewCell.xib */,
+				A16B52D426DB3C2200B34BEF /* Main.storyboard */,
+				A16B52D926DB3C2300B34BEF /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -118,6 +107,7 @@
 		A16504B326E103E300DEB078 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A140700626E3D60D0070B989 /* LocalLocales.swift */,
 				A16504B626E1042400DEB078 /* WeatherData.swift */,
 				A16504B826E1043F00DEB078 /* WeatherModel.swift */,
 				A16504BA26E1044B00DEB078 /* WeatherManager.swift */,
@@ -148,14 +138,12 @@
 		A16B52CD26DB3C2200B34BEF /* Atmo Weather */ = {
 			isa = PBXGroup;
 			children = (
+				A18AC2D426E622AA000C1794 /* Controllers */,
 				A1406FFB26E152100070B989 /* Views */,
-				A1406FFA26E152050070B989 /* ViewModels */,
 				A16504B326E103E300DEB078 /* Models */,
 				A16B52CE26DB3C2200B34BEF /* AppDelegate.swift */,
 				A16B52D026DB3C2200B34BEF /* SceneDelegate.swift */,
-				A16B52D426DB3C2200B34BEF /* Main.storyboard */,
 				A16B52D726DB3C2300B34BEF /* Assets.xcassets */,
-				A16B52D926DB3C2300B34BEF /* LaunchScreen.storyboard */,
 				A16B52DC26DB3C2300B34BEF /* Info.plist */,
 			);
 			path = "Atmo Weather";
@@ -177,6 +165,18 @@
 				A16B52F226DB3C2400B34BEF /* Info.plist */,
 			);
 			path = "Atmo WeatherUITests";
+			sourceTree = "<group>";
+		};
+		A18AC2D426E622AA000C1794 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A16B52D226DB3C2200B34BEF /* WeatherViewController.swift */,
+				A1406FFE26E28D390070B989 /* PageViewController.swift */,
+				A140700426E38CFF0070B989 /* SearchViewController.swift */,
+				A18AC2CC26E5147D000C1794 /* MyCitiesViewController.swift */,
+				A18AC2CE26E514E6000C1794 /* MyCitiesTableViewCell.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

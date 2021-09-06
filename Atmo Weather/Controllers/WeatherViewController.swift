@@ -14,6 +14,8 @@ class WeatherViewController: UIViewController {
     lazy var geocoder = CLGeocoder()
     let locales = LocalLocales.locales
     
+    //MARK: - IBOutlets for dynamic views
+    
     @IBOutlet weak var weatherBack: UIImageView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -164,6 +166,8 @@ class WeatherViewController: UIViewController {
         updateUI()
     }
     
+    //MARK: - Set each element manually
+    
     private func updateUI() {
         
         let location = CLLocation(latitude: city.lat, longitude: city.lon)
@@ -172,7 +176,6 @@ class WeatherViewController: UIViewController {
             let cityName = self.processResponse(withPlacemarks: placemarks, error: error)
             self.locationLabel.text = cityName
             self.locales.cities[self.city.index].name = cityName
-            print(self.locales.cities[self.city.index].name)
         }
         
         var dailyHigh = -100.00
@@ -188,6 +191,7 @@ class WeatherViewController: UIViewController {
                 dailyLow = city.hourly[i].temp
             }
         }
+        
         currentMinMaxLabel.text = "\(Int(dailyHigh))° / \(Int(dailyLow))°"
         currentConditionLabel.text = city.current.weather[0].main
         
@@ -346,12 +350,11 @@ class WeatherViewController: UIViewController {
         
         windDirectionLabel.text = city.current.windDirectionString
         windSpeedLabel.text = city.current.windSpeedString
-        
-        
     }
     
+    //MARK: - Reverse Geolocator Function
+    
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
-
         if let error = error {
             print("Unable to Reverse Geocode Location (\(error))")
 
@@ -364,5 +367,4 @@ class WeatherViewController: UIViewController {
         }
         return "Unknown"
     }
-
 }
