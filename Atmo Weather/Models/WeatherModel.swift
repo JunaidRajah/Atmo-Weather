@@ -230,3 +230,35 @@ struct WeatherType {
         }
     }
 }
+
+struct currentWeather {
+    
+    let index: Int
+    
+    let lat: Double
+    let lon: Double
+    
+    let temp: String
+    let condition: String
+    
+    let hourly: [HourlyModel]
+    
+    let snow: String
+    let rain: String
+    
+    var minMaxString: String {
+        var dailyHigh = -100.00
+        var dailyLow = 100.00
+
+        for i in 1...24 {
+            if dailyHigh < hourly[i].temp {
+                dailyHigh = hourly[i].temp
+            }
+            if dailyLow > hourly[i].temp {
+                dailyLow = hourly[i].temp
+            }
+        }
+
+        return "\(Int(dailyHigh))° / \(Int(dailyLow))°"
+    }
+}

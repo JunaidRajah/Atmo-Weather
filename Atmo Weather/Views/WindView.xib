@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WindView" customModule="Atmo_Weather" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y6B-77-hJK" customClass="WindView" customModule="Atmo_Weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wind" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="75L-GN-6ak">
+                    <rect key="frame" x="13.5" y="70.5" width="160" height="153"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="75L-GN-6ak" secondAttribute="height" multiplier="151:147" id="wOY-G9-5Ph"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Air Currents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dxF-fg-rCL">
+                    <rect key="frame" x="8" y="8" width="171" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="dxF-fg-rCL" secondAttribute="height" multiplier="165:28" id="TQ9-28-Sft"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Direction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KWw-JL-2FU">
+                    <rect key="frame" x="212" y="122" width="56" height="16.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="in4-gy-lY4">
+                    <rect key="frame" x="212.5" y="155.5" width="49" height="16.5"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12-28 km/h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gLc-9g-WIj">
+                    <rect key="frame" x="280.5" y="155" width="75" height="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Northwest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EbU-QT-hbA">
+                    <rect key="frame" x="280" y="122" width="70" height="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="MEd-24-I55"/>
+            <constraints>
+                <constraint firstItem="KWw-JL-2FU" firstAttribute="centerX" secondItem="Y6B-77-hJK" secondAttribute="centerX" constant="33" id="303-9f-V4q"/>
+                <constraint firstItem="75L-GN-6ak" firstAttribute="top" secondItem="dxF-fg-rCL" secondAttribute="bottom" constant="31.333333333333329" id="3Fe-W1-FH4"/>
+                <constraint firstItem="75L-GN-6ak" firstAttribute="centerX" secondItem="dxF-fg-rCL" secondAttribute="centerX" id="3dd-NY-u7u"/>
+                <constraint firstItem="gLc-9g-WIj" firstAttribute="centerX" secondItem="Y6B-77-hJK" secondAttribute="centerX" constant="111" id="6ne-Oc-aeq"/>
+                <constraint firstItem="dxF-fg-rCL" firstAttribute="top" secondItem="Y6B-77-hJK" secondAttribute="top" constant="8.0000000000000018" id="CqZ-sZ-ICx"/>
+                <constraint firstItem="75L-GN-6ak" firstAttribute="width" secondItem="Y6B-77-hJK" secondAttribute="width" multiplier="0.387179" id="Ex9-LW-WmC"/>
+                <constraint firstItem="in4-gy-lY4" firstAttribute="top" secondItem="KWw-JL-2FU" secondAttribute="bottom" constant="16.666666666666686" id="SDs-U1-EbQ"/>
+                <constraint firstItem="KWw-JL-2FU" firstAttribute="centerY" secondItem="75L-GN-6ak" secondAttribute="centerY" constant="-16" id="WT9-8d-k4G"/>
+                <constraint firstItem="gLc-9g-WIj" firstAttribute="centerY" secondItem="in4-gy-lY4" secondAttribute="centerY" id="aSG-cE-1lv"/>
+                <constraint firstItem="in4-gy-lY4" firstAttribute="width" secondItem="KWw-JL-2FU" secondAttribute="width" multiplier="0.875" id="f8O-ec-XJz"/>
+                <constraint firstItem="in4-gy-lY4" firstAttribute="centerX" secondItem="KWw-JL-2FU" secondAttribute="centerX" constant="-3" id="ggR-aG-a5N"/>
+                <constraint firstAttribute="height" constant="250" id="hLZ-ej-RwO"/>
+                <constraint firstItem="dxF-fg-rCL" firstAttribute="leading" secondItem="Y6B-77-hJK" secondAttribute="leading" constant="8" id="itD-qH-hJX"/>
+                <constraint firstItem="EbU-QT-hbA" firstAttribute="centerX" secondItem="Y6B-77-hJK" secondAttribute="centerX" constant="108" id="mT2-3f-VKw"/>
+                <constraint firstItem="EbU-QT-hbA" firstAttribute="centerY" secondItem="KWw-JL-2FU" secondAttribute="centerY" id="tDX-St-hHJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="windDirectionLabel" destination="EbU-QT-hbA" id="fYx-VQ-KL7"/>
+                <outlet property="windSpeedLabel" destination="gLc-9g-WIj" id="NIF-bT-8Dd"/>
+            </connections>
+            <point key="canvasLocation" x="0.0" y="-581"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wind" catalog="system" width="128" height="101"/>
+    </resources>
+</document>
