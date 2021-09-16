@@ -41,7 +41,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     }
 }
 
-//MARK: - UITableView DataSource functions
+    // MARK: - UITableView DataSource functions
 
 extension SearchViewController: UITableViewDataSource {
     
@@ -65,7 +65,7 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableView Delegate functions
+    // MARK: - UITableView Delegate functions
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -75,11 +75,11 @@ extension SearchViewController: UITableViewDelegate {
         let searchRequest = MKLocalSearch.Request(completion: result)
         
         let search = MKLocalSearch(request: searchRequest)
-        search.start { (response, error) in
+        search.start { (response, _) in
             guard let coordinate = response?.mapItems[0].placemark.coordinate else {
                 return
             }
-            guard let name = response?.mapItems[0].name else {
+            guard (response?.mapItems[0].name) != nil else {
                 return
             }
             

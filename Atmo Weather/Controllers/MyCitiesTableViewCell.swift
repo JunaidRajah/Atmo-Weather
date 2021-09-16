@@ -40,13 +40,12 @@ class MyCitiesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    //MARK: - Reverse Geo
+    // MARK: - Reverse Geo
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
 
         if let error = error {
             print("Unable to Reverse Geocode Location (\(error))")
-
         } else {
             if let placemarks = placemarks, let placemark = placemarks.first {
                 return placemark.locality ?? "A place with no name"

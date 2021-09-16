@@ -8,20 +8,19 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: UIViewController, CurrentWeatherViewDelegate {
     
     var city: WeatherModel!
-    lazy var geocoder = CLGeocoder()
-    let locales = LocalLocales.locales
     
-    //MARK: - IBOutlets for dynamic views
-    
+    // MARK: - IBOutlets for dynamic views
     @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var weatherBack: UIImageView!
     
     static func createWeatherView(city: WeatherModel) -> WeatherViewController {
-        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "weather") as! WeatherViewController
-        
+        // swiftlint:disable force_cast
+        let newViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(
+            withIdentifier: "weather") as! WeatherViewController
+        // swiftlint:enable force_cast
         newViewController.city = city
         return newViewController
     }
@@ -31,13 +30,10 @@ class WeatherViewController: UIViewController {
         updateUI()
     }
     
-    //MARK: - Set each element manually
-    
+    // MARK: - Set each element manually
     private func updateUI() {
-        
         weatherBack.image = UIImage(named: city.current.currentBack)
-       
-        
+        // swiftlint:disable force_cast
         let currentView = CurrentWeatherView.instanceFromNib() as! CurrentWeatherView
         let currentModel = currentWeather(index: self.city.index,
                                           lat: city.lat, lon: city.lon,
@@ -46,22 +42,20 @@ class WeatherViewController: UIViewController {
                                           hourly: city.hourly,
                                           snow: city.current.snowString, rain: city.currentRainString)
         currentView.setup(current: currentModel)
+        currentView.delegate = self
         mainStackView.addArrangedSubview(currentView)
         
-       
         let hourlyView = HourlyView.instanceFromNib() as! HourlyView
         hourlyView.setup(hourly: city.hourly)
         mainStackView.addArrangedSubview(hourlyView)
         
         let dayStack = UIStackView()
         dayStack.axis = .vertical
-        
-        for i in 1...6 {
+        for day in 1...6 {
             let dayView = DailyView.instanceFromNib() as! DailyView
-            dayView.setup(day: city.daily[i])
+            dayView.setup(day: city.daily[day])
             dayStack.addArrangedSubview(dayView)
         }
-        
         mainStackView.addArrangedSubview(dayStack)
         
         let comfortView = ComfortView.instanceFromNib() as! ComfortView
@@ -71,21 +65,10 @@ class WeatherViewController: UIViewController {
         let windView = WindView.instanceFromNib() as! WindView
         windView.setup(current: city.current)
         mainStackView.addArrangedSubview(windView)
+        // swiftlint:enable force_cast
     }
     
-    //MARK: - Reverse Geolocator Function
-    
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
-        if let error = error {
-            print("Unable to Reverse Geocode Location (\(error))")
-
-        } else {
-            if let placemarks = placemarks, let placemark = placemarks.first {
-                return placemark.locality ?? "The Middle of Nowhere"
-            } else {
-                return "Unknown"
-            }
-        }
-        return "Unknown"
+    func goToNextScene() {
+        performSegue(withIdentifier: "weatherToCities", sender: self)
     }
 }

@@ -20,7 +20,7 @@ struct WeatherManager {
     
     lazy var geocoder = CLGeocoder()
     
-    mutating func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees, index: Int){
+    mutating func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees, index: Int) {
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
         performRequest(with: urlString, index: index)
     }
@@ -28,15 +28,12 @@ struct WeatherManager {
     func performRequest(with urlString: String, index: Int) {
         
         if let url = URL(string: urlString) {
-            
             let session =  URLSession(configuration: .default)
-            
-            let task = session.dataTask(with: url) { (data, response, error) in
+            let task = session.dataTask(with: url) { (data, _, error) in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
                     return
                 }
-                
                 if let safeData = data {
                     if let weather = self.parseJSON(safeData, index: index) {
                         self.delegate?.didUpdateWeather(self, weather: weather)
@@ -51,9 +48,7 @@ struct WeatherManager {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
-            
             let decodedData = try  decoder.decode(WeatherData.self, from: weatherData)
-            
             let current = CurrentModel(sunrise: decodedData.current.sunrise,
                                        sunset: decodedData.current.sunset,
                                        temp: decodedData.current.temp,
@@ -99,7 +94,11 @@ struct WeatherManager {
                 hourly.append(newHour)
             }
             
-            let weather = WeatherModel(index: index,lat: decodedData.lat, lon: decodedData.lon, current: current, daily: daily, hourly: hourly)
+            let weather = WeatherModel(index: index,
+                                       lat: decodedData.lat, lon: decodedData.lon,
+                                       current: current,
+                                       daily: daily,
+                                       hourly: hourly)
             return weather
             
         } catch {
@@ -107,6 +106,4 @@ struct WeatherManager {
             return nil
         }
     }
-    
-    
 }

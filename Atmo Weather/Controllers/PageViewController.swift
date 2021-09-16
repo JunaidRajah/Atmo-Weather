@@ -8,42 +8,29 @@
 import UIKit
 import CoreLocation
 
-class PageViewController: UIPageViewController {
-    
-    private let defaults = UserDefaults.standard
-    let locales = LocalLocales.locales
-    var weatherManager = WeatherManager()
-    let locationManager = CLLocationManager()
-    
-    private var cityLat = [Double]()
-    private var cityLon = [Double]()
+class PageViewController: UIPageViewController, PageViewModelDelegate {
+
+    private let pageViewModel = PageViewModel()
     private var currentIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        pageViewModel.delegate = self
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
 
         let image = UIImageView()
         image.image = UIImage(named: "Atmo Launch.png")
         image.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         customView.addSubview(image)
-        var stored = Double((defaults.array(forKey: "cityLat") as? [Double])?.count ?? 2)
+        var stored = pageViewModel.storedCount
         if stored <= 1 {
             stored = 2
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + stored){
+        DispatchQueue.main.asyncAfter(deadline: .now() + stored) {
             image.alpha = 0
             self.view.sendSubviewToBack(customView)
             }
         self.view.addSubview(customView)
-        
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
-        locationManager.requestLocation()
-        
-        locationManager.delegate = self
-        weatherManager.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,32 +38,16 @@ class PageViewController: UIPageViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        for subView in self.view.subviews {
-            if subView is UIScrollView {
-                subView.frame = self.view.bounds
-            }
+        for subView in self.view.subviews where subView is UIScrollView {
+            subView.frame = self.view.bounds
+            
         }
         super.viewDidLayoutSubviews()
     }
     
-    private func addCities() {
-        if let lat = defaults.array(forKey: "cityLat") as? [Double] {
-            cityLat = lat
-        }
-        
-        if let lon = defaults.array(forKey: "cityLon") as? [Double] {
-            cityLon = lon
-        }
-        
-        var count = 1
-        for i in 0..<cityLat.count {
-            weatherManager.fetchWeather(latitude: cityLat[i], longitude: cityLon[i], index: count)
-            count += 1
-        }
-    }
-    
-    private func setupPageController() {
-        if self.locales.cities.count == ((self.defaults.array(forKey: "cityLat") as? [Double])?.count ?? 0) + 1 {
+    func modelLoadCompleted() {
+        print("got here")
+        if pageViewModel.isLocalesEqualToDefaults {
             let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
             appearance.pageIndicatorTintColor = UIColor.gray
             appearance.currentPageIndicatorTintColor = UIColor.white
@@ -84,14 +55,14 @@ class PageViewController: UIPageViewController {
             self.dataSource = self
             self.delegate = self
             self.view.backgroundColor = .clear
-            let initialVC = WeatherViewController.createWeatherView(city: locales.cities[0])
+            let initialVC = WeatherViewController.createWeatherView(city: pageViewModel.returnCityAtIndex(index: 0))
             self.setViewControllers([initialVC], direction: .forward, animated: true, completion: nil)
             self.didMove(toParent: self)
         }
     }
 }
 
-//MARK: - PageViewController Delegate and DataSource functions
+// MARK: - PageViewController Delegate and DataSource functions
 
 extension PageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
@@ -107,8 +78,9 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         }
         
         index -= 1
-        let vc: WeatherViewController = WeatherViewController.createWeatherView(city: locales.cities[index])
-        return vc
+        let weatherViewController: WeatherViewController = WeatherViewController.createWeatherView(
+            city: pageViewModel.returnCityAtIndex(index: index))
+        return weatherViewController
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -118,76 +90,21 @@ extension PageViewController: UIPageViewControllerDataSource, UIPageViewControll
         }
         
         var index = currentVC.city.index
-        if index >= self.locales.cities.count - 1 {
+        if index >= pageViewModel.localCount - 1 {
             return nil
         }
         
         index += 1
-        let vc: WeatherViewController = WeatherViewController.createWeatherView(city: locales.cities[index])
-        return vc
+        let weatherViewController: WeatherViewController = WeatherViewController.createWeatherView(
+            city: pageViewModel.returnCityAtIndex(index: index))
+        return weatherViewController
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return self.locales.cities.count
+        pageViewModel.localCount
     }
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return self.currentIndex
     }
 }
-
-//MARK: - WeatherManagerDelegate
-
-extension PageViewController: WeatherManagerDelegate {
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
-        DispatchQueue.main.async {
-            
-            if weather.index == 0 && self.locales.cities.isEmpty {
-                self.locales.cities.append(weather)
-                
-            } else if weather.index > 0 && self.locales.cities.count == weather.index {
-                self.locales.cities.append(weather)
-                
-            } else if self.locales.cities.count > 0 && weather.index < self.locales.cities.count {
-                self.locales.cities[weather.index] = weather
-                
-            } else {
-                let diff = (weather.index + 1) - self.locales.cities.count
-                
-                for _ in 0...diff - 1 {
-                    self.locales.cities.append(weather)
-                }
-            }
-            
-            if weather.index == 0 {
-                self.addCities()
-            }
-            
-            if self.locales.cities.count == ((self.defaults.array(forKey: "cityLat") as? [Double])?.count ?? 0) + 1 {
-                self.setupPageController()
-            }
-        }
-    }
-    
-    func didFailWithError(error: Error) {
-        print(error)
-    }
-}
-
-//MARK: - CLLocationManagerDelegate
-
-extension PageViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            locationManager.stopUpdatingLocation()
-            let lat = location.coordinate.latitude
-            let lon = location.coordinate.longitude
-            weatherManager.fetchWeather(latitude: lat, longitude: lon, index: 0)
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("error::: \(error)")
-    }
-}
-

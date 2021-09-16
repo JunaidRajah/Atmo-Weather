@@ -21,8 +21,8 @@ struct WeatherModel {
         for day in daily {
             total += day.pop
         }
-        total = total / Double(daily.count)
-        total = total * 100
+        total /= Double(daily.count)
+        total *= 100
         return "\(Int(total))%"
     }
 }
@@ -58,16 +58,16 @@ struct CurrentModel {
     
     var uvString: String {
         switch Int(uvi) {
-            case 0...2:
-                return "\(Int(uvi)) Low"
-            case 3...5:
-                return "\(Int(uvi)) Moderate"
-            case 6...7:
-                return "\(Int(uvi)) High"
-            case 8...10:
-                return "\(Int(uvi)) Very High"
-            default:
-                return "\(Int(uvi)) Extreme"
+        case 0...2:
+            return "\(Int(uvi)) Low"
+        case 3...5:
+            return "\(Int(uvi)) Moderate"
+        case 6...7:
+            return "\(Int(uvi)) High"
+        case 8...10:
+            return "\(Int(uvi)) Very High"
+        default:
+            return "\(Int(uvi)) Extreme"
         }
     }
     
@@ -77,26 +77,26 @@ struct CurrentModel {
     
     var windDirectionString: String {
         switch windDeg {
-            case 337...360:
-                return "North"
-            case 0...22:
-                return "North"
-            case 23...67:
-                return "North East"
-            case 68...112:
-                return "East"
-            case 113...157:
-                return "South East"
-            case 158...202:
-                return "South"
-            case 203...247:
-                return "South West"
-            case 248...292:
-                return "West"
-            case 293...336:
-                return "North West"
-            default:
-                return "Error"
+        case 337...360:
+            return "North"
+        case 0...22:
+            return "North"
+        case 23...67:
+            return "North East"
+        case 68...112:
+            return "East"
+        case 113...157:
+            return "South East"
+        case 158...202:
+            return "South"
+        case 203...247:
+            return "South West"
+        case 248...292:
+            return "West"
+        case 293...336:
+            return "North West"
+        default:
+            return "Error"
         }
     }
     
@@ -211,22 +211,22 @@ struct WeatherType {
     
     var conditionName: String {
         switch id {
-            case 200...232:
-                return "cloud.bolt"
-            case 300...321:
-                return "cloud.drizzle"
-            case 500...531:
-                return "cloud.rain"
-            case 600...622:
-                return "cloud.snow"
-            case 701...781:
-                return "cloud.fog"
-            case 800:
-                return "sun.max"
-            case 801...804:
-                return "cloud.bolt"
-            default:
-                return "cloud"
+        case 200...232:
+            return "cloud.bolt"
+        case 300...321:
+            return "cloud.drizzle"
+        case 500...531:
+            return "cloud.rain"
+        case 600...622:
+            return "cloud.snow"
+        case 701...781:
+            return "cloud.fog"
+        case 800:
+            return "sun.max"
+        case 801...804:
+            return "cloud.bolt"
+        default:
+            return "cloud"
         }
     }
 }
@@ -250,12 +250,12 @@ struct currentWeather {
         var dailyHigh = -100.00
         var dailyLow = 100.00
 
-        for i in 1...24 {
-            if dailyHigh < hourly[i].temp {
-                dailyHigh = hourly[i].temp
+        for hour in 1...24 {
+            if dailyHigh < hourly[hour].temp {
+                dailyHigh = hourly[hour].temp
             }
-            if dailyLow > hourly[i].temp {
-                dailyLow = hourly[i].temp
+            if dailyLow > hourly[hour].temp {
+                dailyLow = hourly[hour].temp
             }
         }
 

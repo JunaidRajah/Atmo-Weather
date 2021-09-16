@@ -39,7 +39,7 @@ class MyCitiesViewController: UIViewController {
     }
 }
 
-//MARK: - UITableView DataSource functions
+// MARK: - UITableView DataSource functions
 
 extension MyCitiesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,8 +51,9 @@ extension MyCitiesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
         let cityCell = tableView.dequeueReusableCell(withIdentifier: MyCitiesTableViewCell.identifier, for: indexPath) as! MyCitiesTableViewCell
-        
+        // swiftlint:enable force_cast
         cityCell.configure(lat: self.locales.cities[indexPath.row + 1].lat,
                            lon: self.locales.cities[indexPath.row + 1].lon,
                            cellBack: self.locales.cities[indexPath.row + 1].current.currentBack,
@@ -66,7 +67,7 @@ extension MyCitiesViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableView Delegate functions
+// MARK: - UITableView Delegate functions
 
 extension MyCitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

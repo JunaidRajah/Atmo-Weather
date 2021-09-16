@@ -4,6 +4,7 @@
 //
 //  Created by Junaid Rajah on 2021/09/16.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 
@@ -24,5 +25,4 @@ class ComfortView: UIView {
         feelsLikeLabel.text = current.feelsLikeString
         uvLabel.text = current.uvString
     }
-    
 }

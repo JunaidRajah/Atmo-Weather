@@ -4,6 +4,7 @@
 //
 //  Created by Junaid Rajah on 2021/09/15.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 
@@ -16,13 +17,11 @@ class HourlyView: UIScrollView {
     }
     
     func setup(hourly: [HourlyModel]) {
-        for i in 1...24 {
+        for hour in 1...24 {
             let hourView = HourView.instanceFromNib() as! HourView
-            let hourModel = hourly[i]
+            let hourModel = hourly[hour]
             hourView.setup(hour: hourModel)
             stackView.addArrangedSubview(hourView)
-            
         }
-        
     }
 }

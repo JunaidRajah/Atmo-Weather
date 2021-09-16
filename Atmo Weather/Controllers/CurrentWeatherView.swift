@@ -4,12 +4,18 @@
 //
 //  Created by Junaid Rajah on 2021/09/15.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 import CoreLocation
 
+protocol CurrentWeatherViewDelegate: AnyObject {
+    func goToNextScene()
+}
+
 class CurrentWeatherView: UIView {
 
+    weak var delegate: CurrentWeatherViewDelegate?
     lazy var geocoder = CLGeocoder()
     let locales = LocalLocales.locales
     
@@ -31,7 +37,6 @@ class CurrentWeatherView: UIView {
     func setup(current: currentWeather) {
     
         let location = CLLocation(latitude: current.lat, longitude: current.lon)
-        
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             // Process Response
             let cityName = self.processResponse(withPlacemarks: placemarks, error: error)
@@ -54,13 +59,15 @@ class CurrentWeatherView: UIView {
             rainAmount.isHidden = false
             rainAmount.text = current.rain
         }
-            
+    }
+    
+    @IBAction func addCityButtonPressed(_ sender: UIButton) {
+        delegate?.goToNextScene()
     }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
         if let error = error {
             print("Unable to Reverse Geocode Location (\(error))")
-
         } else {
             if let placemarks = placemarks, let placemark = placemarks.first {
                 return placemark.locality ?? "The Middle of Nowhere"

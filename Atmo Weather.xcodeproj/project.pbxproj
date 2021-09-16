@@ -36,6 +36,7 @@
 		A1C0681026F2A9DE004EAF68 /* WindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0680F26F2A9DE004EAF68 /* WindView.swift */; };
 		A1C0681226F2A9F2004EAF68 /* WindView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681126F2A9F2004EAF68 /* WindView.xib */; };
 		A1C0681526F2AA0E004EAF68 /* ComfortView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681426F2AA0E004EAF68 /* ComfortView.xib */; };
+		A1C0681826F3CDAA004EAF68 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		A1C0680F26F2A9DE004EAF68 /* WindView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindView.swift; sourceTree = "<group>"; };
 		A1C0681126F2A9F2004EAF68 /* WindView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WindView.xib; sourceTree = "<group>"; };
 		A1C0681426F2AA0E004EAF68 /* ComfortView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComfortView.xib; sourceTree = "<group>"; };
+		A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				A16B52D026DB3C2200B34BEF /* SceneDelegate.swift */,
 				A16B52D726DB3C2300B34BEF /* Assets.xcassets */,
 				A16B52DC26DB3C2300B34BEF /* Info.plist */,
+				A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */,
 			);
 			path = "Atmo Weather";
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				A16B52C726DB3C2200B34BEF /* Sources */,
 				A16B52C826DB3C2200B34BEF /* Frameworks */,
 				A16B52C926DB3C2200B34BEF /* Resources */,
+				A1C0681626F2B40F004EAF68 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -347,6 +351,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A1C0681626F2B40F004EAF68 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A16B52C726DB3C2200B34BEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -359,6 +383,7 @@
 				A1C0681026F2A9DE004EAF68 /* WindView.swift in Sources */,
 				A1C0680A26F24938004EAF68 /* DailyView.swift in Sources */,
 				A16B52CF26DB3C2200B34BEF /* AppDelegate.swift in Sources */,
+				A1C0681826F3CDAA004EAF68 /* PageViewModel.swift in Sources */,
 				A140700526E38CFF0070B989 /* SearchViewController.swift in Sources */,
 				A18AC2CD26E5147D000C1794 /* MyCitiesViewController.swift in Sources */,
 				A18AC2D026E514E6000C1794 /* MyCitiesTableViewCell.swift in Sources */,

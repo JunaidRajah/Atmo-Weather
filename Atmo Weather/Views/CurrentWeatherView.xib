@@ -76,6 +76,9 @@
                     </constraints>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" backgroundImage="plus" catalog="system"/>
+                    <connections>
+                        <action selector="addCityButtonPressed:" destination="Vf4-CM-ch7" eventType="touchUpInside" id="Tku-KK-W6k"/>
+                    </connections>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4y3-b9-daG">
                     <rect key="frame" x="312" y="123.5" width="38" height="21"/>

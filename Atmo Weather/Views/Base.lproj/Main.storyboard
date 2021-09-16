@@ -146,6 +146,7 @@
                     <connections>
                         <outlet property="mainStackView" destination="LbS-UN-eD9" id="o4U-kp-Jya"/>
                         <outlet property="weatherBack" destination="j1f-VI-hkQ" id="Ld4-WD-tlK"/>
+                        <segue destination="m2r-bu-2CA" kind="presentation" identifier="weatherToCities" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="v6L-kc-g4Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
