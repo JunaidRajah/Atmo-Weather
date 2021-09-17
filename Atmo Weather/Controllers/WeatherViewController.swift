@@ -8,13 +8,16 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, CurrentWeatherViewDelegate {
+class WeatherViewController: UIViewController, CurrentWeatherViewDelegate, MoonButtonDelegate {
     
     var city: WeatherModel!
     
     // MARK: - IBOutlets for dynamic views
     @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var weatherBack: UIImageView!
+    
+    var cyclesButton: UIView!
+    var moonStack: UIStackView!
     
     static func createWeatherView(city: WeatherModel) -> WeatherViewController {
         // swiftlint:disable force_cast
@@ -45,6 +48,23 @@ class WeatherViewController: UIViewController, CurrentWeatherViewDelegate {
         currentView.delegate = self
         mainStackView.addArrangedSubview(currentView)
         
+        moonStack = UIStackView()
+        moonStack.axis = .vertical
+        
+        let moonBtn = MoonButtonView.instanceFromNib() as! MoonButtonView
+        moonBtn.delegate = self
+        cyclesButton = moonBtn
+        mainStackView.addArrangedSubview(cyclesButton)
+        
+        for day in 0...6 {
+            let moonView = MoonView.instanceFromNib() as! MoonView
+            moonView.setup(day: city.daily[day])
+            moonView.isHidden = true
+            moonView.alpha = 0
+            moonStack.addArrangedSubview(moonView)
+        }
+        mainStackView.addArrangedSubview(moonStack)
+        
         let hourlyView = HourlyView.instanceFromNib() as! HourlyView
         hourlyView.setup(hourly: city.hourly)
         mainStackView.addArrangedSubview(hourlyView)
@@ -65,10 +85,22 @@ class WeatherViewController: UIViewController, CurrentWeatherViewDelegate {
         let windView = WindView.instanceFromNib() as! WindView
         windView.setup(current: city.current)
         mainStackView.addArrangedSubview(windView)
+        
+        
         // swiftlint:enable force_cast
     }
     
     func goToNextScene() {
         performSegue(withIdentifier: "weatherToCities", sender: self)
+    }
+    
+    func cyclesButtonPressed() {
+        moonStack.arrangedSubviews.forEach { (moonView) in
+            UIView.animate(withDuration: 0.7) {
+                moonView.isHidden = !moonView.isHidden
+                moonView.alpha = moonView.alpha == 0 ? 1 : 0
+                moonView.layoutIfNeeded()
+            }
+        }
     }
 }

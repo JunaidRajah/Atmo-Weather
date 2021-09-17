@@ -142,9 +142,80 @@ struct HourlyModel {
 
 struct DailyModel {
     let dt: Int
+    let sunrise: Int
+    let sunset: Int
+    let moonrise: Int
+    let moonset: Int
+    let moonPhase: Double
     let temp: TempModel
     let weather: [WeatherType]
     let pop: Double
+    
+    var sunriseString: String {
+        let date = Date(timeIntervalSince1970: Double(sunrise))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
+    
+    var sunsetString: String {
+        let date = Date(timeIntervalSince1970: Double(sunset))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
+    
+    var moonriseString: String {
+        let date = Date(timeIntervalSince1970: Double(moonrise))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
+    
+    
+    var moonsetString: String {
+        let date = Date(timeIntervalSince1970: Double(moonset))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
+    }
+    
+    var moonPhaseString: String {
+        switch moonPhase {
+        case 0.95...1:
+            return "New Moon"
+        case 0...0.05:
+            return "New Moon"
+        case 0.06...0.19:
+            return "Waxing Crescent"
+        case 0.2...0.3:
+            return "First Quarter Moon"
+        case 0.31...0.44:
+            return "Waxing Gibous"
+        case 0.45...0.55:
+            return "Full Moon"
+        case 0.56...0.69:
+            return "Waning Gibous"
+        case 0.7...0.8:
+            return "Last Quarter Moon"
+        case 0.81...0.94:
+            return "Waning Crescent"
+        default:
+            return "Odd Moon"
+        }
+    }
     
     var dayString: String {
         let date = Date(timeIntervalSince1970: Double(dt))

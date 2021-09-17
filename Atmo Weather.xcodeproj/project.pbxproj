@@ -37,6 +37,10 @@
 		A1C0681226F2A9F2004EAF68 /* WindView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681126F2A9F2004EAF68 /* WindView.xib */; };
 		A1C0681526F2AA0E004EAF68 /* ComfortView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681426F2AA0E004EAF68 /* ComfortView.xib */; };
 		A1C0681826F3CDAA004EAF68 /* PageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */; };
+		A1C0681A26F3EFF5004EAF68 /* MoonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681926F3EFF5004EAF68 /* MoonView.xib */; };
+		A1C0681C26F3F59B004EAF68 /* MoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0681B26F3F59B004EAF68 /* MoonView.swift */; };
+		A1C0681E26F405CB004EAF68 /* MoonButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681D26F405CB004EAF68 /* MoonButtonView.xib */; };
+		A1C0682226F40B64004EAF68 /* MoonButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0682126F40B64004EAF68 /* MoonButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,10 @@
 		A1C0681126F2A9F2004EAF68 /* WindView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WindView.xib; sourceTree = "<group>"; };
 		A1C0681426F2AA0E004EAF68 /* ComfortView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComfortView.xib; sourceTree = "<group>"; };
 		A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewModel.swift; sourceTree = "<group>"; };
+		A1C0681926F3EFF5004EAF68 /* MoonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoonView.xib; sourceTree = "<group>"; };
+		A1C0681B26F3F59B004EAF68 /* MoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonView.swift; sourceTree = "<group>"; };
+		A1C0681D26F405CB004EAF68 /* MoonButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoonButtonView.xib; sourceTree = "<group>"; };
+		A1C0682126F40B64004EAF68 /* MoonButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +140,8 @@
 				A1C0680B26F249C4004EAF68 /* DailyView.xib */,
 				A1C0681126F2A9F2004EAF68 /* WindView.xib */,
 				A1C0681426F2AA0E004EAF68 /* ComfortView.xib */,
+				A1C0681926F3EFF5004EAF68 /* MoonView.xib */,
+				A1C0681D26F405CB004EAF68 /* MoonButtonView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +224,8 @@
 				A1C0680926F24938004EAF68 /* DailyView.swift */,
 				A1C0680D26F2A9CC004EAF68 /* ComfortView.swift */,
 				A1C0680F26F2A9DE004EAF68 /* WindView.swift */,
+				A1C0681B26F3F59B004EAF68 /* MoonView.swift */,
+				A1C0682126F40B64004EAF68 /* MoonButtonView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -322,9 +334,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C0681A26F3EFF5004EAF68 /* MoonView.xib in Resources */,
 				A1C067FA26F21B4D004EAF68 /* CurrentWeatherView.xib in Resources */,
 				A1C0681526F2AA0E004EAF68 /* ComfortView.xib in Resources */,
 				A18AC2D126E514E6000C1794 /* MyCitiesTableViewCell.xib in Resources */,
+				A1C0681E26F405CB004EAF68 /* MoonButtonView.xib in Resources */,
 				A16B52DB26DB3C2300B34BEF /* LaunchScreen.storyboard in Resources */,
 				A16B52D826DB3C2300B34BEF /* Assets.xcassets in Resources */,
 				A1C0680C26F249C4004EAF68 /* DailyView.xib in Resources */,
@@ -388,12 +402,14 @@
 				A18AC2CD26E5147D000C1794 /* MyCitiesViewController.swift in Sources */,
 				A18AC2D026E514E6000C1794 /* MyCitiesTableViewCell.swift in Sources */,
 				A16504B726E1042400DEB078 /* WeatherData.swift in Sources */,
+				A1C0681C26F3F59B004EAF68 /* MoonView.swift in Sources */,
 				A1C0680026F232AC004EAF68 /* HourView.swift in Sources */,
 				A16B52D126DB3C2200B34BEF /* SceneDelegate.swift in Sources */,
 				A1C067F826F21AE7004EAF68 /* CurrentWeatherView.swift in Sources */,
 				A1C0680426F23BB6004EAF68 /* HourlyView.swift in Sources */,
 				A16504B926E1043F00DEB078 /* WeatherModel.swift in Sources */,
 				A1406FFF26E28D390070B989 /* PageViewController.swift in Sources */,
+				A1C0682226F40B64004EAF68 /* MoonButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

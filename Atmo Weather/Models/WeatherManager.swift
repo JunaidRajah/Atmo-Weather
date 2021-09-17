@@ -71,6 +71,8 @@ struct WeatherManager {
             var daily = [DailyModel]()
             for day in decodedData.daily {
                 let newDay = DailyModel(dt: day.dt,
+                                        sunrise: day.sunrise, sunset: day.sunset,
+                                        moonrise: day.moonrise, moonset: day.moonset, moonPhase: day.moonPhase,
                                         temp: TempModel(day: day.temp.day,
                                                         min: day.temp.min,
                                                         max: day.temp.max),
