@@ -66,6 +66,33 @@ extension MyCitiesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+        
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+            -> UISwipeActionsConfiguration? {
+            let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+                tableView.deselectRow(at: indexPath, animated: true)
+                
+                var arrLat = self.defaults.array(forKey: "cityLat") as? [Double]
+                arrLat?.remove(at: indexPath.row)
+                self.defaults.set(arrLat, forKey: "cityLat")
+                
+                var arrLon = self.defaults.array(forKey: "cityLon") as? [Double]
+                arrLon?.remove(at: indexPath.row)
+                self.defaults.set(arrLon, forKey: "cityLon")
+                
+                self.locales.cities.remove(at: indexPath.row + 1)
+                self.performSegue(withIdentifier: "myCitiesToWeather", sender: self)
+                completionHandler(true)
+            }
+            deleteAction.image = UIImage(systemName: "trash")
+            deleteAction.backgroundColor = .black
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+            return configuration
+    }
 }
 
 // MARK: - UITableView Delegate functions
@@ -73,16 +100,5 @@ extension MyCitiesViewController: UITableViewDataSource {
 extension MyCitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        var arrLat = self.defaults.array(forKey: "cityLat") as? [Double]
-        arrLat?.remove(at: indexPath.row)
-        defaults.set(arrLat, forKey: "cityLat")
-        
-        var arrLon = self.defaults.array(forKey: "cityLon") as? [Double]
-        arrLon?.remove(at: indexPath.row)
-        defaults.set(arrLon, forKey: "cityLon")
-        
-        locales.cities.remove(at: indexPath.row + 1)
-        performSegue(withIdentifier: "myCitiesToWeather", sender: self)
     }
 }

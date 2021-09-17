@@ -17,7 +17,6 @@ struct WeatherManager {
     let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?&appid=41f78456f76079e3046aded1054b4183&units=metric"
     var delegate: WeatherManagerDelegate?
     var name = ""
-    
     lazy var geocoder = CLGeocoder()
     
     mutating func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees, index: Int) {

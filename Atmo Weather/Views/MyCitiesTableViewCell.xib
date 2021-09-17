@@ -25,45 +25,32 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gg-51-GXn">
-                        <rect key="frame" x="350" y="0.0" width="40" height="70"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="CZc-Wd-pZI"/>
-                        </constraints>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" image="trash.fill" catalog="system">
-                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20"/>
-                        </state>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ude-nx-wLS">
-                        <rect key="frame" x="292" y="0.0" width="50" height="70"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="ukO-Gq-dCH"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ls4-F3-xFX">
+                        <rect key="frame" x="20" y="0.0" width="292" height="70"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ls4-F3-xFX">
-                        <rect key="frame" x="20" y="0.0" width="264" height="70"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ude-nx-wLS">
+                        <rect key="frame" x="320" y="0.0" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="ukO-Gq-dCH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="36"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="ude-nx-wLS" secondAttribute="bottom" id="0Ij-jh-Gbt"/>
-                    <constraint firstAttribute="bottom" secondItem="0Gg-51-GXn" secondAttribute="bottom" id="0bt-9J-Ja2"/>
                     <constraint firstItem="ls4-F3-xFX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6YA-7z-ahs"/>
                     <constraint firstAttribute="bottom" secondItem="ls4-F3-xFX" secondAttribute="bottom" id="8RO-CD-FgM"/>
-                    <constraint firstItem="0Gg-51-GXn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="BkN-6A-kw1"/>
-                    <constraint firstItem="ude-nx-wLS" firstAttribute="leading" secondItem="ls4-F3-xFX" secondAttribute="trailing" constant="8" symbolic="YES" id="EJf-RI-SF9"/>
                     <constraint firstAttribute="trailing" secondItem="nab-Ub-313" secondAttribute="trailing" id="QsY-2X-W4V"/>
                     <constraint firstItem="ude-nx-wLS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xrw-pr-sX1"/>
+                    <constraint firstItem="ude-nx-wLS" firstAttribute="leading" secondItem="ls4-F3-xFX" secondAttribute="trailing" constant="8" symbolic="YES" id="YZR-Ja-54k"/>
+                    <constraint firstAttribute="trailing" secondItem="ude-nx-wLS" secondAttribute="trailing" id="ZyH-2A-Ks4"/>
                     <constraint firstItem="nab-Ub-313" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aKy-aO-n6I"/>
                     <constraint firstItem="ls4-F3-xFX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="iHR-wK-hDb"/>
-                    <constraint firstItem="0Gg-51-GXn" firstAttribute="leading" secondItem="ude-nx-wLS" secondAttribute="trailing" constant="8" symbolic="YES" id="nS4-eP-aeq"/>
-                    <constraint firstAttribute="trailing" secondItem="0Gg-51-GXn" secondAttribute="trailing" id="se7-dQ-bTH"/>
                     <constraint firstItem="nab-Ub-313" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="v8r-WH-MGj"/>
                     <constraint firstAttribute="bottom" secondItem="nab-Ub-313" secondAttribute="bottom" id="vhb-Hl-jmY"/>
                 </constraints>
@@ -79,6 +66,5 @@
     </objects>
     <resources>
         <image name="cloudDay" width="1080" height="1920"/>
-        <image name="trash.fill" catalog="system" width="121" height="128"/>
     </resources>
 </document>

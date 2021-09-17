@@ -41,6 +41,7 @@
 		A1C0681E26F405CB004EAF68 /* MoonButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681D26F405CB004EAF68 /* MoonButtonView.xib */; };
 		A1C0682226F40B64004EAF68 /* MoonButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0682126F40B64004EAF68 /* MoonButtonView.swift */; };
 		A1C0682626F420FF004EAF68 /* Atmo_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16B52E526DB3C2400B34BEF /* Atmo_WeatherTests.swift */; };
+		A1C0682826F42E72004EAF68 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0682726F42E72004EAF68 /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		A1C0681B26F3F59B004EAF68 /* MoonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonView.swift; sourceTree = "<group>"; };
 		A1C0681D26F405CB004EAF68 /* MoonButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoonButtonView.xib; sourceTree = "<group>"; };
 		A1C0682126F40B64004EAF68 /* MoonButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonButtonView.swift; sourceTree = "<group>"; };
+		A1C0682726F42E72004EAF68 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				A1C0680F26F2A9DE004EAF68 /* WindView.swift */,
 				A1C0681B26F3F59B004EAF68 /* MoonView.swift */,
 				A1C0682126F40B64004EAF68 /* MoonButtonView.swift */,
+				A1C0682726F42E72004EAF68 /* LoadingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				A16504B726E1042400DEB078 /* WeatherData.swift in Sources */,
 				A1C0681C26F3F59B004EAF68 /* MoonView.swift in Sources */,
 				A1C0680026F232AC004EAF68 /* HourView.swift in Sources */,
+				A1C0682826F42E72004EAF68 /* LoadingViewController.swift in Sources */,
 				A16B52D126DB3C2200B34BEF /* SceneDelegate.swift in Sources */,
 				A1C067F826F21AE7004EAF68 /* CurrentWeatherView.swift in Sources */,
 				A1C0680426F23BB6004EAF68 /* HourlyView.swift in Sources */,

@@ -30,6 +30,7 @@ class MyCitiesTableViewCell: UITableViewCell {
         
         self.cellBack.image = UIImage(named: cellBack)
         self.cityTemp.text = "\(cityTemp)°"
+        self.selectionStyle = .none
     }
 
     override func awakeFromNib() {

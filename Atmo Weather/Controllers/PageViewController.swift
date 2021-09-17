@@ -9,28 +9,15 @@ import UIKit
 import CoreLocation
 
 class PageViewController: UIPageViewController, PageViewModelDelegate {
-
+    
+    private let loadingView = LoadingViewController()
     private let pageViewModel = PageViewModel()
     private var currentIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingView.start(container: self)
         pageViewModel.delegate = self
-        let customView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-
-        let image = UIImageView()
-        image.image = UIImage(named: "Atmo Launch.png")
-        image.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        customView.addSubview(image)
-        var stored = pageViewModel.storedCount
-        if stored <= 1 {
-            stored = 2
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + stored) {
-            image.alpha = 0
-            self.view.sendSubviewToBack(customView)
-            }
-        self.view.addSubview(customView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +45,7 @@ class PageViewController: UIPageViewController, PageViewModelDelegate {
             self.setViewControllers([initialVC], direction: .forward, animated: true, completion: nil)
             self.didMove(toParent: self)
         }
+        loadingView.stop()
     }
 }
 
