@@ -40,6 +40,11 @@ class MyCitiesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8))
+    }
+    
     // MARK: - Reverse Geo
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {

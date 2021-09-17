@@ -21,6 +21,7 @@ class MyCitiesViewController: UIViewController {
         cityTableView.register(MyCitiesTableViewCell.nib(), forCellReuseIdentifier: MyCitiesTableViewCell.identifier)
         cityTableView?.delegate = self
         cityTableView?.dataSource = self
+    
     }
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {

@@ -16,11 +16,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, MKLocalSearch
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchResultsTable: UITableView!
     
-    var searchCompleter = MKLocalSearchCompleter()
-    var searchResults = [MKLocalSearchCompletion]()
+    private var searchCompleter = MKLocalSearchCompleter()
+    private var searchResults = [MKLocalSearchCompletion]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "clearNight.jpg") ?? UIImage())
         searchCompleter.delegate = self
         searchBar?.delegate = self
         searchResultsTable?.delegate = self

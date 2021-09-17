@@ -16,8 +16,8 @@ class WeatherViewController: UIViewController, CurrentWeatherViewDelegate, MoonB
     @IBOutlet weak var mainStackView: UIStackView!
     @IBOutlet weak var weatherBack: UIImageView!
     
-    var cyclesButton: UIView!
-    var moonStack: UIStackView!
+    private var cyclesButton: UIView!
+    private var moonStack: UIStackView!
     
     static func createWeatherView(city: WeatherModel) -> WeatherViewController {
         // swiftlint:disable force_cast
@@ -85,8 +85,6 @@ class WeatherViewController: UIViewController, CurrentWeatherViewDelegate, MoonB
         let windView = WindView.instanceFromNib() as! WindView
         windView.setup(current: city.current)
         mainStackView.addArrangedSubview(windView)
-        
-        
         // swiftlint:enable force_cast
     }
     
@@ -96,7 +94,7 @@ class WeatherViewController: UIViewController, CurrentWeatherViewDelegate, MoonB
     
     func cyclesButtonPressed() {
         moonStack.arrangedSubviews.forEach { (moonView) in
-            UIView.animate(withDuration: 0.7) {
+            UIView.animate(withDuration: 0.8) {
                 moonView.isHidden = !moonView.isHidden
                 moonView.alpha = moonView.alpha == 0 ? 1 : 0
                 moonView.layoutIfNeeded()

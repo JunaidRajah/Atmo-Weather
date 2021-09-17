@@ -119,7 +119,7 @@ struct CurrentModel {
     }
 }
 
-struct HourlyModel {
+struct HourlyModel: DateConverter {
     let dt: Int
     let temp: Double
     let pop: Double
@@ -130,17 +130,11 @@ struct HourlyModel {
     }
     
     var timeString: String {
-        let date = Date(timeIntervalSince1970: Double(dt))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return convertDate(date: Double(dt), format: "HH:mm")
     }
 }
 
-struct DailyModel {
+struct DailyModel: DateConverter {
     let dt: Int
     let sunrise: Int
     let sunset: Int
@@ -152,44 +146,19 @@ struct DailyModel {
     let pop: Double
     
     var sunriseString: String {
-        let date = Date(timeIntervalSince1970: Double(sunrise))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return self.convertDate(date: Double(sunrise), format: "HH:mm")
     }
     
     var sunsetString: String {
-        let date = Date(timeIntervalSince1970: Double(sunset))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return self.convertDate(date: Double(sunset), format: "HH:mm")
     }
     
     var moonriseString: String {
-        let date = Date(timeIntervalSince1970: Double(moonrise))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return self.convertDate(date: Double(moonrise), format: "HH:mm")
     }
     
-    
     var moonsetString: String {
-        let date = Date(timeIntervalSince1970: Double(moonset))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return self.convertDate(date: Double(moonset), format: "HH:mm")
     }
     
     var moonPhaseString: String {
@@ -218,23 +187,11 @@ struct DailyModel {
     }
     
     var dayString: String {
-        let date = Date(timeIntervalSince1970: Double(dt))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return self.convertDate(date: Double(dt), format: "EEE")
     }
     
     var dateString: String {
-        let date = Date(timeIntervalSince1970: Double(dt))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd LLL"
-        let strDate = dateFormatter.string(from: date)
-        
-        return strDate
+        return self.convertDate(date: Double(dt), format: "dd LLL")
     }
     
     var rainString: String {
@@ -331,5 +288,20 @@ struct currentWeather {
         }
 
         return "\(Int(dailyHigh))° / \(Int(dailyLow))°"
+    }
+}
+
+protocol DateConverter {
+    func convertDate(date: Double, format: String) -> String
+}
+
+extension DateConverter {
+    func convertDate(date: Double, format: String) -> String {
+        let date = Date(timeIntervalSince1970: Double(date))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let strDate = dateFormatter.string(from: date)
+        
+        return strDate
     }
 }

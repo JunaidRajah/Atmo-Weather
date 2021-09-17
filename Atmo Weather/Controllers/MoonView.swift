@@ -23,7 +23,6 @@ class MoonView: UIView {
     }
     
     func setup(day: DailyModel) {
-        print("moonsetup")
         dateLabel.text = day.dateString
         sunriseLabel.text = day.sunriseString
         sunsetLabel.text = day.sunsetString

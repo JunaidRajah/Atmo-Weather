@@ -46,7 +46,6 @@ class PageViewController: UIPageViewController, PageViewModelDelegate {
     }
     
     func modelLoadCompleted() {
-        print("got here")
         if pageViewModel.isLocalesEqualToDefaults {
             let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
             appearance.pageIndicatorTintColor = UIColor.gray

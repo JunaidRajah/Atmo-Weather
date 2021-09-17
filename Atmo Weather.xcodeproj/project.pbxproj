@@ -19,7 +19,6 @@
 		A16B52D626DB3C2200B34BEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16B52D426DB3C2200B34BEF /* Main.storyboard */; };
 		A16B52D826DB3C2300B34BEF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A16B52D726DB3C2300B34BEF /* Assets.xcassets */; };
 		A16B52DB26DB3C2300B34BEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A16B52D926DB3C2300B34BEF /* LaunchScreen.storyboard */; };
-		A16B52E626DB3C2400B34BEF /* Atmo_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16B52E526DB3C2400B34BEF /* Atmo_WeatherTests.swift */; };
 		A16B52F126DB3C2400B34BEF /* Atmo_WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16B52F026DB3C2400B34BEF /* Atmo_WeatherUITests.swift */; };
 		A18AC2CD26E5147D000C1794 /* MyCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC2CC26E5147D000C1794 /* MyCitiesViewController.swift */; };
 		A18AC2D026E514E6000C1794 /* MyCitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18AC2CE26E514E6000C1794 /* MyCitiesTableViewCell.swift */; };
@@ -41,6 +40,7 @@
 		A1C0681C26F3F59B004EAF68 /* MoonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0681B26F3F59B004EAF68 /* MoonView.swift */; };
 		A1C0681E26F405CB004EAF68 /* MoonButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C0681D26F405CB004EAF68 /* MoonButtonView.xib */; };
 		A1C0682226F40B64004EAF68 /* MoonButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0682126F40B64004EAF68 /* MoonButtonView.swift */; };
+		A1C0682626F420FF004EAF68 /* Atmo_WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16B52E526DB3C2400B34BEF /* Atmo_WeatherTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,11 +183,11 @@
 				A18AC2D426E622AA000C1794 /* Controllers */,
 				A1406FFB26E152100070B989 /* Views */,
 				A16504B326E103E300DEB078 /* Models */,
+				A1C0682426F41E9B004EAF68 /* ViewModels */,
 				A16B52CE26DB3C2200B34BEF /* AppDelegate.swift */,
 				A16B52D026DB3C2200B34BEF /* SceneDelegate.swift */,
 				A16B52D726DB3C2300B34BEF /* Assets.xcassets */,
 				A16B52DC26DB3C2300B34BEF /* Info.plist */,
-				A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */,
 			);
 			path = "Atmo Weather";
 			sourceTree = "<group>";
@@ -228,6 +228,14 @@
 				A1C0682126F40B64004EAF68 /* MoonButtonView.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A1C0682426F41E9B004EAF68 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A1C0681726F3CDAA004EAF68 /* PageViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,7 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A16B52E626DB3C2400B34BEF /* Atmo_WeatherTests.swift in Sources */,
+				A1C0682626F420FF004EAF68 /* Atmo_WeatherTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudDay" translatesAutoresizingMaskIntoConstraints="NO" id="nab-Ub-313">
-                        <rect key="frame" x="0.0" y="10" width="390" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="70"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -28,7 +28,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Gg-51-GXn">
                         <rect key="frame" x="350" y="0.0" width="40" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="0Gg-51-GXn" secondAttribute="height" multiplier="4:7" id="BFu-J5-fHs"/>
+                            <constraint firstAttribute="width" constant="40" id="CZc-Wd-pZI"/>
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" image="trash.fill" catalog="system">
@@ -38,50 +38,43 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ude-nx-wLS">
                         <rect key="frame" x="292" y="0.0" width="50" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="ude-nx-wLS" secondAttribute="height" multiplier="5:7" id="4nI-He-B9o"/>
+                            <constraint firstAttribute="width" constant="50" id="ukO-Gq-dCH"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="32"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ls4-F3-xFX">
-                        <rect key="frame" x="20" y="10" width="264" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="ls4-F3-xFX" secondAttribute="height" multiplier="132:25" id="hQI-m3-0jR"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
+                        <rect key="frame" x="20" y="0.0" width="264" height="70"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="0Gg-51-GXn" firstAttribute="leading" secondItem="ude-nx-wLS" secondAttribute="trailing" constant="8" symbolic="YES" id="0dz-vm-v5l"/>
-                    <constraint firstItem="ls4-F3-xFX" firstAttribute="top" secondItem="nab-Ub-313" secondAttribute="top" id="3oD-To-BxK"/>
-                    <constraint firstItem="0Gg-51-GXn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4Zi-K0-Ps4"/>
-                    <constraint firstItem="nab-Ub-313" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="5cI-PF-GJJ"/>
-                    <constraint firstAttribute="trailing" secondItem="0Gg-51-GXn" secondAttribute="trailing" id="FTG-yH-pth"/>
-                    <constraint firstItem="nab-Ub-313" firstAttribute="leading" secondItem="ls4-F3-xFX" secondAttribute="trailing" constant="-284" id="I42-vK-kq9"/>
-                    <constraint firstAttribute="bottom" secondItem="0Gg-51-GXn" secondAttribute="bottom" id="Iom-61-sxt"/>
-                    <constraint firstItem="nab-Ub-313" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XN0-Rg-LhX"/>
-                    <constraint firstAttribute="trailing" secondItem="nab-Ub-313" secondAttribute="trailing" id="YBZ-Lb-8kO"/>
-                    <constraint firstItem="ls4-F3-xFX" firstAttribute="bottom" secondItem="nab-Ub-313" secondAttribute="bottom" id="bhf-Kc-kSV"/>
-                    <constraint firstAttribute="bottom" secondItem="ude-nx-wLS" secondAttribute="bottom" id="dd1-JT-idV"/>
-                    <constraint firstItem="ls4-F3-xFX" firstAttribute="width" secondItem="nab-Ub-313" secondAttribute="width" multiplier="0.676923" id="hUp-lC-Zfx"/>
-                    <constraint firstItem="ude-nx-wLS" firstAttribute="leading" secondItem="ls4-F3-xFX" secondAttribute="trailing" constant="8" symbolic="YES" id="oWe-7j-COJ"/>
-                    <constraint firstItem="ude-nx-wLS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="s6M-De-iLb"/>
-                    <constraint firstAttribute="bottom" secondItem="nab-Ub-313" secondAttribute="bottom" constant="10" id="xqv-Up-an5"/>
+                    <constraint firstAttribute="bottom" secondItem="ude-nx-wLS" secondAttribute="bottom" id="0Ij-jh-Gbt"/>
+                    <constraint firstAttribute="bottom" secondItem="0Gg-51-GXn" secondAttribute="bottom" id="0bt-9J-Ja2"/>
+                    <constraint firstItem="ls4-F3-xFX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6YA-7z-ahs"/>
+                    <constraint firstAttribute="bottom" secondItem="ls4-F3-xFX" secondAttribute="bottom" id="8RO-CD-FgM"/>
+                    <constraint firstItem="0Gg-51-GXn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="BkN-6A-kw1"/>
+                    <constraint firstItem="ude-nx-wLS" firstAttribute="leading" secondItem="ls4-F3-xFX" secondAttribute="trailing" constant="8" symbolic="YES" id="EJf-RI-SF9"/>
+                    <constraint firstAttribute="trailing" secondItem="nab-Ub-313" secondAttribute="trailing" id="QsY-2X-W4V"/>
+                    <constraint firstItem="ude-nx-wLS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xrw-pr-sX1"/>
+                    <constraint firstItem="nab-Ub-313" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aKy-aO-n6I"/>
+                    <constraint firstItem="ls4-F3-xFX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="iHR-wK-hDb"/>
+                    <constraint firstItem="0Gg-51-GXn" firstAttribute="leading" secondItem="ude-nx-wLS" secondAttribute="trailing" constant="8" symbolic="YES" id="nS4-eP-aeq"/>
+                    <constraint firstAttribute="trailing" secondItem="0Gg-51-GXn" secondAttribute="trailing" id="se7-dQ-bTH"/>
+                    <constraint firstItem="nab-Ub-313" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="v8r-WH-MGj"/>
+                    <constraint firstAttribute="bottom" secondItem="nab-Ub-313" secondAttribute="bottom" id="vhb-Hl-jmY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <constraints>
-                <constraint firstItem="0Gg-51-GXn" firstAttribute="width" secondItem="njF-e1-oar" secondAttribute="width" multiplier="0.102564" id="fdU-sx-3TM"/>
-            </constraints>
             <connections>
                 <outlet property="cellBack" destination="nab-Ub-313" id="Ez0-0c-nHB"/>
                 <outlet property="cityName" destination="ls4-F3-xFX" id="e6d-Pg-fVs"/>
                 <outlet property="cityTemp" destination="ude-nx-wLS" id="DCC-vx-YID"/>
             </connections>
-            <point key="canvasLocation" x="-40.579710144927539" y="68.303571428571431"/>
+            <point key="canvasLocation" x="-41.53846153846154" y="68.246445497630333"/>
         </tableViewCell>
     </objects>
     <resources>
