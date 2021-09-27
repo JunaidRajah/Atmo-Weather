@@ -8,9 +8,9 @@
 
 import UIKit
 
-class HourlyView: UIScrollView {
-
-    @IBOutlet weak var stackView: UIStackView!
+final class HourlyView: UIScrollView {
+    
+    @IBOutlet private weak var stackView: UIStackView!
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "HourlyView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView

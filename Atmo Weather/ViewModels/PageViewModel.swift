@@ -12,7 +12,7 @@ protocol PageViewModelDelegate: AnyObject {
     func modelLoadCompleted()
 }
 
-class PageViewModel: NSObject {
+final class PageViewModel: NSObject {
     
     weak var delegate: PageViewModelDelegate?
     private let defaults = UserDefaults.standard
@@ -94,7 +94,7 @@ extension PageViewModel: WeatherManagerDelegate {
             if weather.index == 0 {
                 self.addCities()
             }
-
+            
             if self.isLocalesEqualToDefaults {
                 self.allCitiesLoaded()
             }

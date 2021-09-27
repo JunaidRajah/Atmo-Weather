@@ -92,14 +92,14 @@ struct FeelsLike: Codable {
 struct Rain: Codable {
     let the1h: Double?
     enum CodingKeys: String, CodingKey {
-           case the1h = "1h"
+        case the1h = "1h"
     }
 }
 
 struct Snow: Codable {
     let the1h: Double?
     enum CodingKeys: String, CodingKey {
-           case the1h = "1h"
+        case the1h = "1h"
     }
 }
 

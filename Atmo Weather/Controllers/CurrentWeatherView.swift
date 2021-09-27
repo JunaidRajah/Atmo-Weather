@@ -7,74 +7,57 @@
 // swiftlint:disable force_cast
 
 import UIKit
-import CoreLocation
 
 protocol CurrentWeatherViewDelegate: AnyObject {
     func goToNextScene()
 }
 
-class CurrentWeatherView: UIView {
-
+final class CurrentWeatherView: UIView, CurrentWeatherViewModelDelegate {
+    var coordinator: MainCoordinator?
     weak var delegate: CurrentWeatherViewDelegate?
-    lazy var geocoder = CLGeocoder()
-    let locales = LocalLocales.locales
-    
-    @IBOutlet weak var currentTemp: UILabel!
-    @IBOutlet weak var minMaxTemp: UILabel!
-    @IBOutlet weak var currentConditions: UILabel!
-    @IBOutlet weak var snowAmount: UILabel!
-    @IBOutlet weak var rainAmount: UILabel!
-    @IBOutlet weak var currentLocation: UILabel!
-    
-    @IBOutlet weak var rainIcon: UIImageView!
-    @IBOutlet weak var snowIcon: UIImageView!
-    @IBOutlet weak var currentLocationIcon: UIImageView!
+    private var currentWeatherViewModel = CurrentWeatherViewModel()
+
+    @IBOutlet private weak var currentTemp: UILabel!
+    @IBOutlet private weak var minMaxTemp: UILabel!
+    @IBOutlet private weak var currentConditions: UILabel!
+    @IBOutlet private weak var snowAmount: UILabel!
+    @IBOutlet private weak var rainAmount: UILabel!
+    @IBOutlet private weak var currentLocation: UILabel!
+    @IBOutlet private weak var rainIcon: UIImageView!
+    @IBOutlet private weak var snowIcon: UIImageView!
+    @IBOutlet private weak var currentLocationIcon: UIImageView!
+    @IBOutlet private weak var conditionOverlay: UIImageView!
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "CurrentWeatherView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }
     
-    func setup(current: currentWeather) {
-    
-        let location = CLLocation(latitude: current.lat, longitude: current.lon)
-        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            // Process Response
-            let cityName = self.processResponse(withPlacemarks: placemarks, error: error)
-            self.currentLocation.text = cityName
-            self.locales.cities[current.index].name = cityName
-        }
-       
-        currentTemp.text = current.temp
-        minMaxTemp.text = current.minMaxString
-        currentConditions.text = current.condition
-
-        if current.snow != "0%" {
+    func setup(with city: WeatherModel) {
+        currentWeatherViewModel.delegate = self
+        conditionOverlay.image = UIImage.gifImageWithName(currentWeatherViewModel.conditionOverlayString(from: city))
+        currentWeatherViewModel.cityNameString(from: city)
+        currentTemp.text = city.current.tempratureString
+        minMaxTemp.text = city.minMaxString
+        currentConditions.text = city.current.weather[0].main
+        
+        if city.current.snowString != "0%" {
             snowIcon.isHidden = false
             snowAmount.isHidden = false
-            snowAmount.text = current.snow
+            snowAmount.text = city.current.snowString
         }
-
-        if current.rain != "0%" {
+        
+        if city.currentRainString != "0%" {
             rainIcon.isHidden = false
             rainAmount.isHidden = false
-            rainAmount.text = current.rain
+            rainAmount.text = city.currentRainString
         }
     }
     
-    @IBAction func addCityButtonPressed(_ sender: UIButton) {
+    func didSetCityName(cityName: String) {
+        currentLocation.text = cityName
+    }
+    
+    @IBAction private func addCityButtonPressed(_ sender: UIButton) {
         delegate?.goToNextScene()
-    }
-    
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
-        if let error = error {
-            print("Unable to Reverse Geocode Location (\(error))")
-        } else {
-            if let placemarks = placemarks, let placemark = placemarks.first {
-                return placemark.locality ?? "The Middle of Nowhere"
-            } else {
-                return "Unknown"
-            }
-        }
-        return "Unknown"
     }
 }

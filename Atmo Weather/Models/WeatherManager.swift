@@ -42,7 +42,7 @@ struct WeatherManager {
             task.resume()
         }
     }
-
+    
     func parseJSON(_ weatherData: Data, index: Int) -> WeatherModel? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -63,9 +63,9 @@ struct WeatherManager {
                                        rain: RainModel(the1h: decodedData.current.rain?.the1h ?? 0),
                                        snow: SnowModel(the1h: decodedData.current.snow?.the1h ?? 0),
                                        weather: [WeatherType(id: decodedData.current.weather[0].id,
-                                                            main: decodedData.current.weather[0].main,
-                                                            description: decodedData.current.weather[0].description,
-                                                            icon: decodedData.current.weather[0].icon)])
+                                                             main: decodedData.current.weather[0].main,
+                                                             description: decodedData.current.weather[0].description,
+                                                             icon: decodedData.current.weather[0].icon)])
             
             var daily = [DailyModel]()
             for day in decodedData.daily {

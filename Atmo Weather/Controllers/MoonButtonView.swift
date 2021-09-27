@@ -12,7 +12,7 @@ protocol MoonButtonDelegate: AnyObject {
     func cyclesButtonPressed()
 }
 
-class MoonButtonView: UIView {
+final class MoonButtonView: UIView {
     
     weak var delegate: MoonButtonDelegate?
     
@@ -20,7 +20,7 @@ class MoonButtonView: UIView {
         return UINib(nibName: "MoonButtonView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }
     
-    @IBAction func cyclesButtonPressed(_ sender: UIButton) {
+    @IBAction private func cyclesButtonPressed(_ sender: UIButton) {
         delegate?.cyclesButtonPressed()
     }
 }

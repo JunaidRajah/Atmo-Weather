@@ -8,35 +8,26 @@
 import UIKit
 import CoreLocation
 
-class MyCitiesViewController: UIViewController {
-
-    @IBOutlet weak var cityTableView: UITableView!
-    let locales = LocalLocales.locales
-    var name = "The Middle of Nowhere"
-    lazy var geocoder = CLGeocoder()
-    let defaults = UserDefaults.standard
+final class MyCitiesViewController: UIViewController, Storyboarded {
+    
+    var coordinator: MainCoordinator?
+    private let myCitiesViewModel = MyCitiesViewModel()
+    @IBOutlet private weak var cityTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         cityTableView.register(MyCitiesTableViewCell.nib(), forCellReuseIdentifier: MyCitiesTableViewCell.identifier)
         cityTableView?.delegate = self
         cityTableView?.dataSource = self
-    
+        
     }
     
-    private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> String {
-
-        if let error = error {
-            print("Unable to Reverse Geocode Location (\(error))")
-
-        } else {
-            if let placemarks = placemarks, let placemark = placemarks.first {
-                return placemark.locality ?? "A place with no name"
-            } else {
-                return "Unknown"
-            }
-        }
-        return "Unknown"
+    @IBAction private func backButtonPressed(_ sender: UIButton) {
+        coordinator?.backFromWeather(vc: self)
+    }
+    
+    @IBAction private func addCityButtonPressed(_ sender: UIButton) {
+        coordinator?.addCityFromCities(vc: self)
     }
 }
 
@@ -48,17 +39,13 @@ extension MyCitiesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locales.cities.count - 1
+        myCitiesViewModel.localesCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // swiftlint:disable force_cast
         let cityCell = tableView.dequeueReusableCell(withIdentifier: MyCitiesTableViewCell.identifier, for: indexPath) as! MyCitiesTableViewCell
-        // swiftlint:enable force_cast
-        cityCell.configure(lat: self.locales.cities[indexPath.row + 1].lat,
-                           lon: self.locales.cities[indexPath.row + 1].lon,
-                           cellBack: self.locales.cities[indexPath.row + 1].current.currentBack,
-                           cityTemp: self.locales.cities[indexPath.row + 1].current.tempratureString)
+        cityCell.configure(city: myCitiesViewModel.localesCity(at: indexPath.row))
         
         return cityCell
     }
@@ -70,28 +57,19 @@ extension MyCitiesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-        
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
-            -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
-                tableView.deselectRow(at: indexPath, animated: true)
-                
-                var arrLat = self.defaults.array(forKey: "cityLat") as? [Double]
-                arrLat?.remove(at: indexPath.row)
-                self.defaults.set(arrLat, forKey: "cityLat")
-                
-                var arrLon = self.defaults.array(forKey: "cityLon") as? [Double]
-                arrLon?.remove(at: indexPath.row)
-                self.defaults.set(arrLon, forKey: "cityLon")
-                
-                self.locales.cities.remove(at: indexPath.row + 1)
-                self.performSegue(withIdentifier: "myCitiesToWeather", sender: self)
-                completionHandler(true)
-            }
-            deleteAction.image = UIImage(systemName: "trash")
-            deleteAction.backgroundColor = .black
-            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-            return configuration
+    -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { (_, _, completionHandler) in
+            tableView.deselectRow(at: indexPath, animated: true)
+            self.myCitiesViewModel.deleteCity(at: indexPath.row)
+            self.coordinator?.backFromWeather(vc: self)
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = .black
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
     }
 }
 

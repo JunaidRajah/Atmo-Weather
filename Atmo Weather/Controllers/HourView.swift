@@ -8,11 +8,11 @@
 
 import UIKit
 
-class HourView: UIView {
-
-    @IBOutlet weak var hourTime: UILabel!
-    @IBOutlet weak var hourImage: UIImageView!
-    @IBOutlet weak var hourTemp: UILabel!
+final class HourView: UIView {
+    
+    @IBOutlet private weak var hourTime: UILabel!
+    @IBOutlet private weak var hourImage: UIImageView!
+    @IBOutlet private weak var hourTemp: UILabel!
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "HourView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView

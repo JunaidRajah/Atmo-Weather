@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalLocales {
+final class LocalLocales {
     static let locales = LocalLocales()
     var cities = [WeatherModel]()
 }

@@ -25,6 +25,21 @@ struct WeatherModel {
         total *= 100
         return "\(Int(total))%"
     }
+    
+    var minMaxString: String {
+        var dailyHigh = -100.00
+        var dailyLow = 100.00
+        
+        for hour in 1...24 {
+            if dailyHigh < hourly[hour].temp {
+                dailyHigh = hourly[hour].temp
+            }
+            if dailyLow > hourly[hour].temp {
+                dailyLow = hourly[hour].temp
+            }
+        }
+        return "\(Int(dailyHigh))° / \(Int(dailyLow))°"
+    }
 }
 
 struct CurrentModel {
@@ -45,15 +60,15 @@ struct CurrentModel {
     let weather: [WeatherType]
     
     var snowString: String {
-        return "\(Int(snow?.the1h ?? 0))%"
+        "\(Int(snow?.the1h ?? 0))%"
     }
     
     var tempratureString: String {
-        return "\(Int(temp))"
+        "\(Int(temp))"
     }
     
     var feelsLikeString: String {
-        return String(Int(feelsLike))
+        String(Int(feelsLike))
     }
     
     var uvString: String {
@@ -72,7 +87,7 @@ struct CurrentModel {
     }
     
     var windSpeedString: String {
-        return "\(Int(windSpeed * 3.6)) km/h"
+        "\(Int(windSpeed * 3.6)) km/h"
     }
     
     var windDirectionString: String {
@@ -126,11 +141,11 @@ struct HourlyModel: DateConverter {
     let weather: [WeatherType]
     
     var tempratureString: String {
-        return "\(Int(temp))°"
+        "\(Int(temp))°"
     }
     
     var timeString: String {
-        return convertDate(date: Double(dt), format: "HH:mm")
+        convertDate(date: Double(dt), format: "HH:mm")
     }
 }
 
@@ -146,19 +161,19 @@ struct DailyModel: DateConverter {
     let pop: Double
     
     var sunriseString: String {
-        return self.convertDate(date: Double(sunrise), format: "HH:mm")
+        self.convertDate(date: Double(sunrise), format: "HH:mm")
     }
     
     var sunsetString: String {
-        return self.convertDate(date: Double(sunset), format: "HH:mm")
+        self.convertDate(date: Double(sunset), format: "HH:mm")
     }
     
     var moonriseString: String {
-        return self.convertDate(date: Double(moonrise), format: "HH:mm")
+        self.convertDate(date: Double(moonrise), format: "HH:mm")
     }
     
     var moonsetString: String {
-        return self.convertDate(date: Double(moonset), format: "HH:mm")
+        self.convertDate(date: Double(moonset), format: "HH:mm")
     }
     
     var moonPhaseString: String {
@@ -187,15 +202,15 @@ struct DailyModel: DateConverter {
     }
     
     var dayString: String {
-        return self.convertDate(date: Double(dt), format: "EEE")
+        self.convertDate(date: Double(dt), format: "EEE")
     }
     
     var dateString: String {
-        return self.convertDate(date: Double(dt), format: "dd LLL")
+        self.convertDate(date: Double(dt), format: "dd LLL")
     }
     
     var rainString: String {
-        return "\(Int(pop * 100))%"
+        "\(Int(pop * 100))%"
     }
 }
 
@@ -205,29 +220,29 @@ struct TempModel {
     let max: Double
     
     var dayTempratureString: String {
-        return "\(Int(day))°"
+        "\(Int(day))°"
     }
     
     var minTempratureString: String {
-        return "\(Int(min))°"
+        "\(Int(min))°"
     }
     
     var maxTempratureString: String {
-        return "\(Int(max))°"
+        "\(Int(max))°"
     }
 }
 
 struct RainModel {
     let the1h: Double?
     enum CodingKeys: String, CodingKey {
-           case the1h = "1h"
+        case the1h = "1h"
     }
 }
 
 struct SnowModel {
     let the1h: Double?
     enum CodingKeys: String, CodingKey {
-           case the1h = "1h"
+        case the1h = "1h"
     }
 }
 
@@ -277,7 +292,7 @@ struct currentWeather {
     var minMaxString: String {
         var dailyHigh = -100.00
         var dailyLow = 100.00
-
+        
         for hour in 1...24 {
             if dailyHigh < hourly[hour].temp {
                 dailyHigh = hourly[hour].temp
@@ -286,7 +301,7 @@ struct currentWeather {
                 dailyLow = hourly[hour].temp
             }
         }
-
+        
         return "\(Int(dailyHigh))° / \(Int(dailyLow))°"
     }
 }

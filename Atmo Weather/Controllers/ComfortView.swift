@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ComfortView: UIView {
-
-    @IBOutlet weak var humidityLabel: UILabel!
-    @IBOutlet weak var humidityBar: UIProgressView!
-    @IBOutlet weak var feelsLikeLabel: UILabel!
-    @IBOutlet weak var uvLabel: UILabel!
+final class ComfortView: UIView {
+    
+    @IBOutlet private weak var humidityLabel: UILabel!
+    @IBOutlet private weak var humidityBar: UIProgressView!
+    @IBOutlet private weak var feelsLikeLabel: UILabel!
+    @IBOutlet private weak var uvLabel: UILabel!
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "ComfortView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView

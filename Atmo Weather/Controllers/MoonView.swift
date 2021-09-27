@@ -8,15 +8,15 @@
 
 import UIKit
 
-class MoonView: UIView {
-
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var sunriseLabel: UILabel!
-    @IBOutlet weak var sunsetLabel: UILabel!
-    @IBOutlet weak var moonriseLabel: UILabel!
-    @IBOutlet weak var moonsetLabel: UILabel!
-    @IBOutlet weak var moonPhaseLabel: UILabel!
-    @IBOutlet weak var moonImage: UIImageView!
+final class MoonView: UIView {
+    
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var sunriseLabel: UILabel!
+    @IBOutlet private weak var sunsetLabel: UILabel!
+    @IBOutlet private weak var moonriseLabel: UILabel!
+    @IBOutlet private weak var moonsetLabel: UILabel!
+    @IBOutlet private weak var moonPhaseLabel: UILabel!
+    @IBOutlet private weak var moonImage: UIImageView!
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "MoonView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
@@ -31,5 +31,4 @@ class MoonView: UIView {
         moonPhaseLabel.text = day.moonPhaseString
         moonImage.image = UIImage(named: day.moonPhaseString)
     }
-    
 }

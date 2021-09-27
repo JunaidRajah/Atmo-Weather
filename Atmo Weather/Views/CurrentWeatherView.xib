@@ -12,6 +12,9 @@
         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vf4-CM-ch7" customClass="CurrentWeatherView" customModule="Atmo_Weather" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VZa-Ya-I3e">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qyq-Wd-sEK">
                     <rect key="frame" x="207" y="30" width="0.0" height="25"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
@@ -93,9 +96,11 @@
             <constraints>
                 <constraint firstItem="2wd-N4-jMF" firstAttribute="leading" secondItem="KZa-lY-ZlZ" secondAttribute="trailing" constant="8" symbolic="YES" id="1di-Ym-Kpd"/>
                 <constraint firstItem="dBK-hA-v8k" firstAttribute="leading" secondItem="Vf4-CM-ch7" secondAttribute="leading" constant="248" id="2NP-0q-YTR"/>
+                <constraint firstItem="VZa-Ya-I3e" firstAttribute="leading" secondItem="gyQ-R1-Gwl" secondAttribute="leading" id="4l2-kq-mgH"/>
                 <constraint firstItem="fbT-kq-8JA" firstAttribute="centerX" secondItem="Vf4-CM-ch7" secondAttribute="centerX" id="7HF-ix-bYh"/>
                 <constraint firstAttribute="height" constant="260" id="7RE-6V-TC9"/>
                 <constraint firstItem="oZx-pN-wNs" firstAttribute="top" secondItem="qyq-Wd-sEK" secondAttribute="top" constant="3" id="B3S-Kh-lqN"/>
+                <constraint firstItem="VZa-Ya-I3e" firstAttribute="bottom" secondItem="gyQ-R1-Gwl" secondAttribute="bottom" id="B8U-i9-vXz"/>
                 <constraint firstItem="yym-Jd-SGJ" firstAttribute="leading" secondItem="Vf4-CM-ch7" secondAttribute="leading" id="Cxb-ZN-vef"/>
                 <constraint firstItem="4y3-b9-daG" firstAttribute="centerX" secondItem="dBK-hA-v8k" secondAttribute="centerX" id="HGJ-7V-FIp"/>
                 <constraint firstItem="Vae-GF-pLK" firstAttribute="width" secondItem="Vf4-CM-ch7" secondAttribute="width" multiplier="0.0769231" id="HcA-XV-77D"/>
@@ -112,7 +117,9 @@
                 <constraint firstItem="lcw-KA-26v" firstAttribute="centerX" secondItem="Vf4-CM-ch7" secondAttribute="centerX" id="gM7-y7-1Qc"/>
                 <constraint firstItem="g78-rZ-Pxh" firstAttribute="centerX" secondItem="yym-Jd-SGJ" secondAttribute="centerX" id="hAJ-iP-3aa"/>
                 <constraint firstItem="KZa-lY-ZlZ" firstAttribute="top" secondItem="2wd-N4-jMF" secondAttribute="bottom" constant="-48" id="hN7-lT-uRb"/>
+                <constraint firstItem="VZa-Ya-I3e" firstAttribute="top" secondItem="Vf4-CM-ch7" secondAttribute="top" id="rXS-Zw-2tF"/>
                 <constraint firstItem="4y3-b9-daG" firstAttribute="top" secondItem="dBK-hA-v8k" secondAttribute="bottom" constant="10" id="tAg-e9-8Be"/>
+                <constraint firstItem="VZa-Ya-I3e" firstAttribute="trailing" secondItem="gyQ-R1-Gwl" secondAttribute="trailing" id="ueW-8D-chJ"/>
                 <constraint firstItem="Vae-GF-pLK" firstAttribute="top" secondItem="Vf4-CM-ch7" secondAttribute="top" constant="26.999999999999698" id="uyc-6A-gOJ"/>
                 <constraint firstItem="yym-Jd-SGJ" firstAttribute="top" secondItem="Vf4-CM-ch7" secondAttribute="top" constant="71.333333333333329" id="uz6-Ps-whF"/>
                 <constraint firstItem="oZx-pN-wNs" firstAttribute="leading" secondItem="qyq-Wd-sEK" secondAttribute="trailing" constant="7.6666666666666856" id="vG2-qb-Q5N"/>
@@ -121,6 +128,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="conditionOverlay" destination="VZa-Ya-I3e" id="QeD-cN-7ak"/>
                 <outlet property="currentConditions" destination="fbT-kq-8JA" id="uuC-Oz-GsT"/>
                 <outlet property="currentLocation" destination="qyq-Wd-sEK" id="5wP-Ha-Cf7"/>
                 <outlet property="currentLocationIcon" destination="oZx-pN-wNs" id="I8i-Ov-Czi"/>
@@ -131,7 +139,7 @@
                 <outlet property="snowAmount" destination="g78-rZ-Pxh" id="lhS-qe-i6P"/>
                 <outlet property="snowIcon" destination="yym-Jd-SGJ" id="uEY-ol-Wol"/>
             </connections>
-            <point key="canvasLocation" x="54" y="-581"/>
+            <point key="canvasLocation" x="53.623188405797109" y="-581.25"/>
         </view>
     </objects>
     <resources>

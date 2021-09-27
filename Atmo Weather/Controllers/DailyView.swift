@@ -8,14 +8,14 @@
 
 import UIKit
 
-class DailyView: UIView {
-
-    @IBOutlet weak var minMaxTemp: UILabel!
-    @IBOutlet weak var weatherIcon: UIImageView!
-    @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var rainIcon: UIImageView!
-    @IBOutlet weak var rainLabel: UILabel!
+final class DailyView: UIView {
+    
+    @IBOutlet private weak var minMaxTemp: UILabel!
+    @IBOutlet private weak var weatherIcon: UIImageView!
+    @IBOutlet private weak var dayLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var rainIcon: UIImageView!
+    @IBOutlet private weak var rainLabel: UILabel!
     
     class func instanceFromNib() -> UIView {
         return UINib(nibName: "DailyView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
